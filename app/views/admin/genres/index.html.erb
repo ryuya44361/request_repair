@@ -1,7 +1,7 @@
 <main>
   <div class ="container">
     <div class = "row">
-        <h5 class="col-auto my-4">ジャンル一覧・追加</h5>
+        <h5 class="col-auto my-4">ジャンル一覧</h5>
       </div>
     </div>
 
@@ -22,7 +22,7 @@
             <%= f.text_field :name ,class: "form-control genre_name"%>
           </div>
           <div class="col-auto mt-3">
-            <%= f.submit '新規投稿', class:"btn btn-success" %>
+            <%= f.submit '追加', class:"btn btn-success" %>
           </div>
         </div>
       <%end%>
@@ -45,12 +45,16 @@
 
             <tr>
               <td><%= genre.name %></td>
-              <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-sm btn-success"%></td>
+              <td>
+                <%= link_to "編集", edit_admin_genre_path(genre.id), class: "btn btn-sm btn-success"%>
+                <%= link_to "削除", admin_genre_path(genre.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger ml-2" %>
+              </td>
             </tr>
 
           <%end%>
           </tbody>
         </table>
+        <%= paginate @genres %>
         </div>
       </div>
     </div>

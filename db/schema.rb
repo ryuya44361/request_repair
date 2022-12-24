@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_24_082831) do
+ActiveRecord::Schema.define(version: 2022_12_24_135219) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2022_12_24_082831) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "completions", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "reservation_id", null: false
+    t.text "substance", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -62,10 +69,40 @@ ActiveRecord::Schema.define(version: 2022_12_24_082831) do
     t.index ["reset_password_token"], name: "index_engineers_on_reset_password_token", unique: true
   end
 
+  create_table "evaluations", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "completion_id", null: false
+    t.integer "evaluation", null: false
+    t.text "comment", null: false
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id", null: false
+    t.integer "engineer_id", null: false
+    t.integer "genre_id", null: false
+    t.integer "restriction_id", null: false
+    t.datetime "reservation_at", null: false
+    t.string "model_number", null: false
+    t.string "serial_number", null: false
+    t.text "introduction", null: false
+  end
+
+  create_table "restrictions", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "reservation_day", null: false
+    t.time "start_time", null: false
+    t.time "finish_time", null: false
+    t.integer "headcount", default: 5, null: false
   end
 
 end
