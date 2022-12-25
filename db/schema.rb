@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2022_12_24_135219) do
     t.integer "engineer_id", null: false
     t.integer "genre_id", null: false
     t.integer "restriction_id", null: false
+    t.integer "completion_id", null: false
     t.datetime "reservation_at", null: false
     t.string "model_number", null: false
     t.string "serial_number", null: false
