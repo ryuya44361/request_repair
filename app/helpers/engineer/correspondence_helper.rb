@@ -1,0 +1,2 @@
+module Engineer::CorrespondenceHelper
+end

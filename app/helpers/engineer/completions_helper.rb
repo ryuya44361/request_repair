@@ -1,0 +1,2 @@
+module Engineer::CompletionsHelper
+end
