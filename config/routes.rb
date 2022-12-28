@@ -34,9 +34,12 @@ end
 
 namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update,:destroy]
-    resources :restrictions, only: [:index, :create,:destroy] do
+    resources :restrictions, only: [:index, :create,:destroy] 
+    resources :limits, only: [:update,:destroy] do
       collection do
-        resources :limits, only: [:update,:destroy]
+        patch :update_all
+        get :day
+        get :time
       end
     end
       
