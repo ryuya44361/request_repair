@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 scope module: :public do
   root to: "homes#top"
   get "about" => "homes#about"
+  resource :customers, only: [:show, :edit, :update] 
+  get "customer/secession" => "customers#secession"
+  patch "customer/change" => "customers#change"
 end
 
 scope module: :engineer do
@@ -24,7 +27,6 @@ end
 }
 
 scope module: :public do
-  
   
 end
 
