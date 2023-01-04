@@ -1,0 +1,2 @@
+class DefaultLimit < ApplicationRecord
+end

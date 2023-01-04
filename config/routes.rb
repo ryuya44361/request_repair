@@ -36,7 +36,7 @@ end
 
 namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update,:destroy]
-    resources :restrictions, only: [:index, :create,:destroy] 
+    resources :default_limits, only: [:index, :create,:destroy] 
     resources :limits, only: [:update,:destroy] do
       collection do
         patch :update_all
