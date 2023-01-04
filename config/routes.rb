@@ -9,6 +9,7 @@ scope module: :public do
 end
 
 scope module: :engineer do
+  resource :engineers, only: [:show, :edit, :update] 
   
 end
 
@@ -27,7 +28,6 @@ end
 }
 
 scope module: :public do
-  
 end
 
 scope module: :engineer do
@@ -44,7 +44,8 @@ namespace :admin do
         get :time
       end
     end
-      
+    resources :customers, only: [:index,:show, :edit, :update, :destroy]
+    resources :engineers, only: [:index,:show, :edit, :update, :destroy]  
 end
 
 
