@@ -37,7 +37,7 @@ end
 namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update,:destroy]
     resources :default_limits, only: [:index, :create,:destroy] 
-    resources :limits, only: [:update,:destroy] do
+    resources :restrictions, only: [:update] do
       collection do
         patch :update_all
         get :day
@@ -45,7 +45,7 @@ namespace :admin do
       end
     end
     resources :customers, only: [:index,:show, :edit, :update, :destroy]
-    resources :engineers, only: [:index,:show, :edit, :update, :destroy]  
+    resources :engineers, only: [:index,:show, :edit, :update, :destroy] 
 end
 
 
