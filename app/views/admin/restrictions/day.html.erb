@@ -3,7 +3,12 @@
      
     
         <%= month_calendar do |date| %>
-　        <%= date.day %>
-　      <% end %>
+          <%= form_with model: @restrictions,url: time_admin_restrictions_path(date) do |f| %>
+　          <%= date.day %><br />
+　          <%= link_to "予約制限", time_admin_restrictions_path(date) do %>
+　            <%= f.hidden_field :reservation_day, :value => date.day %>
+　         <% end %>
+　       <% end %>
+　     <% end %>
   </div>
 </main>

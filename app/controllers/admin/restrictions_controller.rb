@@ -1,9 +1,12 @@
 class Admin::RestrictionsController < ApplicationController
   
-  def index
+  def day
+    @default_limits = DefaultLimit.all
+    @restrictions = Restriction.all
   end
   
-  def show
+  def time
+    @day_params = params[:format]
   end
   
   def update
