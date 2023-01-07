@@ -1,0 +1,37 @@
+<main>
+  <div class = "container">
+    <div class = "row my-3">
+      <div class = "col-6">
+        <h2>予約制限（<%= @day_params%>）</h2>
+      </div>
+    </div>
+    
+    <div class ="row">
+    <div class="col-4 px-5 mt-5">
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th>時間帯</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <% @default_limits.each do |default_limit| %>
+
+            <tr>
+              <td><%= default_limit.start_time.strftime('%H:%M') %>　～　<%= default_limit.finish_time.strftime('%H:%M') %></td>
+              <td>
+                <%= link_to "削除", admin_default_limit_path(default_limit.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger ml-2" %>
+              </td>
+            </tr>
+
+          <%end%>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    
+    
+  </div>
+</main>

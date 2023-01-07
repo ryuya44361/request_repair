@@ -1,14 +1,24 @@
 <main>
    <div class = "container">
-     
+     <div class = "row my-3">
+       <div class = "col-4">
+         <h2>予約制限</h2>
+       </div>
+       <div class = "col-6 text-right">
+            <p>デフォルト人数：
+              <span>
+                <%= form_with model: @default_limits,url: update_all_admin_restrictions_path, method: :patch do |f| %>
+                  <%= f.select :headcount, *[1..20], selected: @default_limits %>
+                  <%= f.submit '変更', class:"btn btn-success" %>
+                <%end%>
+              </span>
+            </p>
+       </div>
+     </div>
     
         <%= month_calendar do |date| %>
-          <%= form_with model: @restrictions,url: time_admin_restrictions_path(date) do |f| %>
-　          <%= date.day %><br />
-　          <%= link_to "予約制限", time_admin_restrictions_path(date) do %>
-　            <%= f.hidden_field :reservation_day, :value => date.day %>
-　         <% end %>
-　       <% end %>
+　        <%= date.day %><br />
+　        <%= link_to "予約制限", time_admin_restrictions_path(date) %>
 　     <% end %>
   </div>
 </main>
