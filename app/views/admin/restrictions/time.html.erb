@@ -17,10 +17,10 @@
           </thead>
 
           <tbody>
-          <% @default_limits.each do |default_limit| %>
+          <% @restriction.each do |restriction| %>
 
             <tr>
-              <td><%= default_limit.start_time.strftime('%H:%M') %>　～　<%= default_limit.finish_time.strftime('%H:%M') %></td>
+              <td><%= restriction.start_time.strftime('%H:%M') %>　～　<%= restriction.finish_time.strftime('%H:%M') %></td>
               <td>
                 <%= link_to "削除", admin_default_limit_path(default_limit.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger ml-2" %>
               </td>

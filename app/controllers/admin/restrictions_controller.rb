@@ -2,15 +2,22 @@ class Admin::RestrictionsController < ApplicationController
 
   def day
     @default_limits = DefaultLimit.all
-    @restrictions = Restriction.all
   end
 
   def time
     @day_params = params[:format]
+    @restrictions = Restriction.all
+    @default_limits = DefaultLimit.all
     
-    if Restriction.where(reservation_day: @day_params)
-      @
+    if Restriction.find_by(reservation_day: @day_params)
+      @restrictions = Restriction.find_by(reservation_day: @day_params)
     else
+      @default_limits.each do |default_limit|
+        @restrictions.reservation_day = @day_params
+        @restrictions.start_time = default_limit.start_time
+        @restrictions.finish_time = default_limit.finish_time
+        @restrictions.headcount = default_limit.headcount
+      end
     end
   end
 
