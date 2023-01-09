@@ -2,35 +2,40 @@ class Admin::RestrictionsController < ApplicationController
 
   def day
     @default_limits = DefaultLimit.all
+    @headcount = DefaultLimit.last.headcount
+    
   end
 
   def time
     @day_params = params[:format]
     @restrictions = Restriction.all
-    @default_limits = DefaultLimit.all
-    
+
     if Restriction.find_by(reservation_day: @day_params)
-      @restrictions = Restriction.find_by(reservation_day: @day_params)
+      @restriction = Restriction.where(reservation_day: @day_params)
     else
-      @default_limits.each do |default_limit|
-        @restrictions.reservation_day = @day_params
-        @restrictions.start_time = default_limit.start_time
-        @restrictions.finish_time = default_limit.finish_time
-        @restrictions.headcount = default_limit.headcount
-      end
+      @restriction = DefaultLimit.all
     end
   end
 
   def update
-    @restriction = 
+    if restriction_params.nil? #デフォルトリミットのデータが入っていた場合
+      restriction_params[:reservation_day] = default_limit.reservation_day
+      restriction_params[:start_time] = default_limit.start_time
+      restriction_params[:finish_time] = default_limit.finish_time
+      restriction_params[:headcount] = default_limit.headcount
+    end
+    
+    #01/10次回すべてのデータを入れるか？カラムを追加するか？を記載
+    
+    @restriction =
       Restriction.find_or_initilzed_by(
         reservation_day: restriction_params[:reservation_day],
-        start_time: restriction_params[:start_time], 
+        start_time: restriction_params[:start_time],
         finish_time: restriction_params[:finish_time],
       )
-      
-      
-     if @restriction.update(headcount: restriction_params[:headcount])  
+
+
+     if @restriction.update(headcount: restriction_params[:headcount])
      else
      end
   end
@@ -51,7 +56,7 @@ private
   end
 
   def default_limit_params
-    params.require(:default_limit).permit(:start_time,:finish_time,:headcount)
+    params.require(:default_limit).permit(:headcount)
   end
 
 end

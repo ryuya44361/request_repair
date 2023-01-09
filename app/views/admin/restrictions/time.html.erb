@@ -6,6 +6,7 @@
       </div>
     </div>
     
+  <%= form_with model: @restriction,url: admin_restriction_path(:id), method: :patch do |f| %>
     <div class ="row">
     <div class="col-4 px-5 mt-5">
         <table class="table table-hover table-inverse">
@@ -17,21 +18,29 @@
           </thead>
 
           <tbody>
-          <% @restriction.each do |restriction| %>
-
-            <tr>
-              <td><%= restriction.start_time.strftime('%H:%M') %>　～　<%= restriction.finish_time.strftime('%H:%M') %></td>
-              <td>
-                <%= link_to "削除", admin_default_limit_path(default_limit.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger ml-2" %>
-              </td>
-            </tr>
-
-          <%end%>
+  
+            <% @restriction.each do |restriction| %>
+              <tr>
+                <td><%= restriction.start_time.strftime('%H:%M') %>　～　<%= restriction.finish_time.strftime('%H:%M') %></td>
+                <td>
+                  <%= f.hidden_field :reservation_day, :value => @day_params %>
+                  <%= f.select :headcount, *[1..20], selected: restriction.headcount %>
+                  <%= f.hidden_field :start_time, :value => restriction.start_time %>
+                  <%= f.hidden_field :finish_time, :value => @day_params %>
+                </td>
+              </tr>
+            <%end%>
           </tbody>
         </table>
         </div>
+    </div>
+    <div class = "row">
+      <div class = "col-10 text-right">
+        <%= f.submit '変更', class:"btn btn-success" %>
       </div>
-    
-    
+    </div>
+  <%end%>
+
+
   </div>
 </main>
