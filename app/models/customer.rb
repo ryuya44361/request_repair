@@ -5,4 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :reservations, dependent: :destroy
+  
+  def address_display
+  '〒' + postal_code + ' ' + address + ' ' 
+  end
 end

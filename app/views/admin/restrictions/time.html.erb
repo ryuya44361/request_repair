@@ -24,9 +24,9 @@
                 <td><%= restriction.start_time.strftime('%H:%M') %>　～　<%= restriction.finish_time.strftime('%H:%M') %></td>
                 <td>
                   <%= f.hidden_field :reservation_day, :value => @day_params %>
-                  <%= f.select :headcount, *[1..20], selected: restriction.headcount %>
                   <%= f.hidden_field :start_time, :value => restriction.start_time %>
-                  <%= f.hidden_field :finish_time, :value => @day_params %>
+                  <%= f.hidden_field :finish_time, :value => restriction.finish_time %>
+                  <%= f.select :headcount, *[1..20], selected: restriction.headcount %>
                 </td>
               </tr>
             <%end%>

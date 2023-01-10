@@ -97,8 +97,10 @@ ActiveRecord::Schema.define(version: 2023_01_04_113335) do
     t.integer "customer_id", null: false
     t.integer "engineer_id", null: false
     t.integer "genre_id", null: false
-    t.integer "restriction_id", null: false
     t.integer "completion_id", null: false
+    t.date "reservation_day", null: false
+    t.time "start_time", null: false
+    t.time "finish_time", null: false
     t.string "model_number", null: false
     t.string "serial_number", null: false
     t.text "introduction", null: false
@@ -107,9 +109,8 @@ ActiveRecord::Schema.define(version: 2023_01_04_113335) do
   create_table "restrictions", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "default_limit_id", null: false
     t.date "reservation_day", null: false
-    t.time "start_time", null: false
-    t.time "finish_time", null: false
     t.integer "headcount", null: false
   end
 

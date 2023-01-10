@@ -3,9 +3,8 @@ class CreateRestrictions < ActiveRecord::Migration[6.1]
     create_table :restrictions do |t|
 
       t.timestamps
+      t.integer :default_limit_id, null: false
       t.date :reservation_day, null: false
-      t.time :start_time, null: false
-      t.time :finish_time, null: false
       t.integer :headcount, null: false
     end
   end
