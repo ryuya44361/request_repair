@@ -1,7 +1,7 @@
 class Admin::EngineersController < ApplicationController
   
   def index
-    @engineers = Engineer.all
+    @engineers = Engineer.page(params[:page])
   end
   
   def show

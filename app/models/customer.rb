@@ -6,6 +6,10 @@ class Customer < ApplicationRecord
   
   has_many :reservations, dependent: :destroy
   
+  def postal_code_display
+    '〒' + postal_code
+  end
+  
   def address_display
   '〒' + postal_code + ' ' + address + ' ' 
   end
