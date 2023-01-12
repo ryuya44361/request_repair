@@ -27,12 +27,18 @@
               <tr>
                 <td><%= engineer.created_at.strftime('%y/%m/%d %H:%M')%></td>
                 <td>
-                  <%= link_to  admin_engineers_path(engineer.id) do %>
+                  <%= link_to  admin_engineer_path(engineer.id) do %>
                     <%= engineer.last_name+engineer.first_name %>
                   <%end%>
                 </td>
                 <td><%= engineer.telephone_number %></td>
-                <td><%= engineer.engineers_deleted %></td>
+                <td>
+                  <% if engineer.engineers_deleted? %>
+                     退会
+                   <% else %>
+                     有効
+                   <% end %>
+                </td>
               </tr>
             <%end%>
           </tbody>

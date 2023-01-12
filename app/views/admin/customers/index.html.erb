@@ -36,7 +36,13 @@
                   <%= customer.postal_code_display %><br />
                   <%= customer.address %>
                 </td>
-                <td><%= customer.is_deleted %></td>
+                <td>
+                   <% if customer.is_deleted? %>
+                     退会
+                   <% else %>
+                     有効
+                   <% end %>
+                </td>
               </tr>
             <%end%>
           </tbody>

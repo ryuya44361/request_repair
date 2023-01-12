@@ -1,0 +1,54 @@
+<main>
+  <div class = "container">
+    <div class = "row my-3">
+      <div class = "col-6">
+        <h2>アカウント詳細（会員）</h2>
+      </div>
+    </div>
+    
+  <div class = "container justify-content-center">
+    <div class = "row mt-2">
+        <p class = "col">会員ID</p>
+        <p class = "col-9"><%= @customer.id %></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">氏名</p>
+        <p class = "col-9"><%= @customer.last_name %>　<%= @customer.first_name%></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">フリガナ</p>
+        <p class = "col-9"><%= @customer.last_name_kana %>　<%= @customer.first_name_kana%></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">郵便番号</p>
+        <p class = "col-9"><%= @customer.postal_code %></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">住所</p>
+        <p class = "col-9"><%= @customer.address %></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">電話番号</p>
+        <p class = "col-9"><%= @customer.telephone_number %></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">メールアドレス</p>
+        <p class = "col-9"><%= @customer.email %></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col"> 会員ステータス</p>
+          <% if @customer.is_deleted? %>
+        　 <p class = "col-9">退会</p>
+          <% else %>
+            <p class = "col-9">有効</p>
+          <% end %>
+    </div>
+    <div class = "row justify-content-center">
+      <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-sm btn-success col-4 mr-5" %>
+    </div>
+      
+    </div>
+  </div>
+  
+  </div>
+</main>
