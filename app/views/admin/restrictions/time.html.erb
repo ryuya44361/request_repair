@@ -6,7 +6,6 @@
       </div>
     </div>
     
-  <%= form_with model: @restriction,url: admin_restriction_path(:id), method: :patch do |f| %>
     <div class ="row">
     <div class="col-4 px-5 mt-5">
         <table class="table table-hover table-inverse">
@@ -16,9 +15,8 @@
               <th></th>
             </tr>
           </thead>
-
+        <%= form_with model: @restriction,url: admin_restriction_path(:id), method: :patch do |f| %>
           <tbody>
-  
             <% @restriction.each do |restriction| %>
               <tr>
                 <td><%= restriction.start_time.strftime('%H:%M') %>　～　<%= restriction.finish_time.strftime('%H:%M') %></td>
@@ -27,19 +25,20 @@
                   <%= f.hidden_field :start_time, :value => restriction.start_time %>
                   <%= f.hidden_field :finish_time, :value => restriction.finish_time %>
                   <%= f.select :headcount, *[1..20], selected: restriction.headcount %>
+                  <%= f.submit '変更', class:"btn btn-success" %>
                 </td>
               </tr>
             <%end%>
           </tbody>
+        <%end%>
         </table>
         </div>
     </div>
     <div class = "row">
       <div class = "col-10 text-right">
-        <%= f.submit '変更', class:"btn btn-success" %>
+        
       </div>
     </div>
-  <%end%>
 
 
   </div>

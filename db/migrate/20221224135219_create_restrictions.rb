@@ -6,6 +6,7 @@ class CreateRestrictions < ActiveRecord::Migration[6.1]
       t.integer :default_limit_id, null: false
       t.date :reservation_day, null: false
       t.integer :headcount, null: false
+      t.integer :update_status, null: false, default: 0
     end
   end
 end

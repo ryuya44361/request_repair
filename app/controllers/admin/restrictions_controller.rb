@@ -23,7 +23,7 @@ class Admin::RestrictionsController < ApplicationController
   end
 
   def update
-    if restriction_params.nil? #デフォルトリミットの方にデータが入っていた場合
+    if restriction_params.nil?   #デフォルトリミットの方にデータが入っていた場合
       restriction_params[:default_limit_id] = default_limit.default_limit_id
       restriction_params[:reservation_day] = default_limit.reservation_day
       restriction_params[:headcount] = default_limit.headcount
