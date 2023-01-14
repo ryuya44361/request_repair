@@ -5,7 +5,7 @@
         <h2>予約制限（<%= @day_params%>）</h2>
       </div>
     </div>
-    
+
     <div class ="row">
     <div class="col-4 px-5 mt-5">
         <table class="table table-hover table-inverse">
@@ -19,12 +19,14 @@
           <tbody>
             <% @restriction.each do |restriction| %>
               <tr>
-                <td><%= restriction.start_time.strftime('%H:%M') %>　～　<%= restriction.finish_time.strftime('%H:%M') %></td>
+                <td><%= restriction.default_limit.start_time.strftime('%H:%M') %>　～　<%= restriction.default_limit.finish_time.strftime('%H:%M') %></td>
                 <td>
-                  <%= f.hidden_field :reservation_day, :value => @day_params %>
-                  <%= f.hidden_field :start_time, :value => restriction.start_time %>
-                  <%= f.hidden_field :finish_time, :value => restriction.finish_time %>
-                  <%= f.select :headcount, *[1..20], selected: restriction.headcount %>
+                  <% if restriction.update_status > 0 %>
+                    <%= f.select :headcount, *[1..20], selected: restriction.headcount %> <!--個別での上限を表示するようにする-->
+                  <% else %>
+                    <%= f.select :headcount, *[1..20], selected: restriction.default_limit.headcount %>
+                  <% end %>
+
                   <%= f.submit '変更', class:"btn btn-success" %>
                 </td>
               </tr>
@@ -36,7 +38,7 @@
     </div>
     <div class = "row">
       <div class = "col-10 text-right">
-        
+
       </div>
     </div>
 

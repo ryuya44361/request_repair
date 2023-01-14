@@ -6,5 +6,37 @@
       </div>
     </div>
     
+    <div class = "container justify-content-center">
+    <div class = "row mt-2">
+        <p class = "col">氏名</p>
+        <p class = "col-9"><%= @engineer.last_name %>　<%= @engineer.first_name%></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">フリガナ</p>
+        <p class = "col-9"><%= @engineer.last_name_kana %>　<%= @engineer.first_name_kana%></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">電話番号</p>
+        <p class = "col-9"><%= @engineer.telephone_number %></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col">メールアドレス</p>
+        <p class = "col-9"><%= @engineer.email %></p>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col"> 会員ステータス</p>
+          <% if @engineer.engineers_deleted? %>
+        　 <p class = "col-9">退会</p>
+          <% else %>
+            <p class = "col-9">有効</p>
+          <% end %>
+    </div>
+    <div class = "row justify-content-center">
+      <%= link_to "編集する", edit_admin_engineer_path(@engineer.id), class: "btn btn-sm btn-success col-4 mr-5" %>
+    </div>
+      
+    </div>
+  </div>
+    
   </div>
 </main>

@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 2023_01_04_113335) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "default_limit_id", null: false
     t.date "reservation_day", null: false
-    t.integer "headcount", null: false
+    t.integer "headcount", default: 0, null: false
     t.integer "update_status", default: 0, null: false
   end
 
