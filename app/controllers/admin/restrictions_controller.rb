@@ -9,9 +9,7 @@ class Admin::RestrictionsController < ApplicationController
   def time
     @day_params = params[:format]
     @default_limits = DefaultLimit.all
-
     @restriction = Restriction.where(reservation_day: @day_params)
-
     if @restriction.blank?
       @default_limits.each do |default_limit|
         Restriction.create(reservation_day: @day_params, default_limit_id: default_limit.id)
@@ -29,12 +27,13 @@ class Admin::RestrictionsController < ApplicationController
   end
 
   def update
-    @day_params = params[:format]
+    @day_params = params[:restriction][:reservation_day]
     @restriction = Restriction.find(params[:id])
       if @restriction.update(headcount: restriction_params[:headcount], update_status: (@restriction.update_status + 1))
-        redirect_to time_admin_restrictions_path(@day_params)
+        
+        redirect_to time_admin_restrictions_path(format: @day_params)
       else
-        render time_admin_restrictions_path(@day_params)
+        render time_admin_restrictions_path(format: @day_params)
       end
   end
 

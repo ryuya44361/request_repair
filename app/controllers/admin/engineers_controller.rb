@@ -9,9 +9,17 @@ class Admin::EngineersController < ApplicationController
   end
   
   def edit
+    @engineer = Engineer.find(params[:id])
   end
   
   def update
+    @engineer = Engineer.find(params[:id])
+    if @engineer.update(engineer_params)
+      redirect_to admin_engineer_path(@engineer.id)
+    else
+      render :edit
+    end
+    
   end
   
   def destroy

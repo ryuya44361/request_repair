@@ -1,0 +1,49 @@
+<main>
+  <div class = "container px-5">
+    <div class = "row m-3">
+      <h5>
+        <%= @engineer.last_name+@engineer.first_name%>さんの会員情報編集
+      </h5>
+    </div>
+
+    <div class = "row ml-3">
+      <% if @engineer.errors.any? %>
+        <h6 class = "col-auto text-danger">全ての値を入力ください。</h6>
+      <% end %>
+    </div>
+
+    <%= form_with model: @engineer,url: admin_engineer_path(@engineer.id),method: :patch do |f| %>
+
+    <div class = "row mt-2">
+        <p class = "col-3">氏名</p>
+        <%= f.text_field :last_name ,class: "form-control col-3 mr-5"%>
+        <%= f.text_field :first_name ,class: "form-control col-3 mr-5"%>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col-3">フリガナ</p>
+        <%= f.text_field :last_name_kana ,class: "form-control col-3 mr-5"%>
+        <%= f.text_field :first_name_kana ,class: "form-control col-3 mr-5"%>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col-3">電話番号</p>
+        <%= f.text_field :telephone_number ,class: "form-control col-3 mr-5"%>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col-3">メールアドレス</p>
+        <%= f.text_field :email ,class: "form-control col-3 mr-5"%>
+    </div>
+    <div class = "row mt-2">
+        <p class = "col-3"> 会員ステータス</p>
+          <div class = "col-5">
+            <%= f.radio_button :engineers_deleted, false %>
+            <%= f.label :engineers_deleted_false,"有効" %>
+            <%= f.radio_button :engineers_deleted, true %>
+            <%= f.label :engineers_deleted_true,"退会" %>
+          </div>
+    </div>
+    <div class = "row">
+      <%= f.submit '変更を保存', class:"btn btn-success" %>
+    </div>
+    <%end%>
+  </div>
+</main>
