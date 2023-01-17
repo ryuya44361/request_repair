@@ -1,0 +1,14 @@
+<main>
+   <div class = "container">
+     <div class = "row my-3">
+       <div class = "col-4">
+         <h2>予約画面</h2>
+       </div>
+     </div>
+    
+        <%= month_calendar do |date| %>
+　        <%= date.day %><br />
+　        <%= link_to "予約制限", time_admin_restrictions_path(date) %>
+　     <% end %>
+  </div>
+</main>
