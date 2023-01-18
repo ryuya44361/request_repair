@@ -24,9 +24,9 @@
                 <td><%= restriction.default_limit.start_time.strftime('%H:%M') %>　～　<%= restriction.default_limit.finish_time.strftime('%H:%M') %></td>
                 <td>
                   <% if restriction.update_status > 0 %>
-                    <%= f.select :headcount, *[1..20], selected: restriction.headcount %> 
+                    <%= f.select :headcount, *[0..20], selected: restriction.headcount %> 
                   <% else %>
-                    <%= f.select :headcount, *[1..20], selected: restriction.default_limit.headcount %>
+                    <%= f.select :headcount, *[0..20], selected: restriction.default_limit.headcount %>
                   <% end %>
 
                   <%= f.hidden_field :reservation_day, :value => @day_params %>

@@ -3,8 +3,25 @@
     <div class = "row justify-content-center">
       <div class = "col-11">
 <%= month_calendar do |date| %>
-　<%= date.day %>
-　  
+  <%= date.day %>
+    <%  
+            @restrictions_day = @restrictions.where(reservation_day: date)
+            # 以下、予約上限の計算変数
+            @restrictions_sum = @restrictions_day.where.not(update_status: 0).sum(:headcount)
+            @default_restrictions_count = @restrictions_day.where(update_status: 0).count
+            @default_restrictions_sum = @default_restrictions_count * @default_limits.last.headcount
+            @default_limits_count = @default_limits.count
+            @default_limits_sum = @default_limits_count * @default_limits.last.headcount
+            # 以上、予約上限の計算変数
+         %>
+         
+         <% if @restrictions_sum + @default_restrictions_sum > 0 %>
+         <p> 〇 </p>
+         <% elsif @restrictions_day.blank? && @default_limits_sum > 0 %>
+         <p> 〇 </p>
+         <% else %>
+         <p> - </p>
+         <% end %>
 <% end %>
 </div>
     </div>  

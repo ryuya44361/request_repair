@@ -8,7 +8,7 @@
             <p>デフォルト人数：
               <span>
                 <%= form_with model: @default_limits,url: update_all_admin_restrictions_path, method: :patch do |f| %>
-                  <%= f.select :headcount, *[1..20], selected: @headcount %>
+                  <%= f.select :headcount, *[0..20], selected: @headcount %>
                   <%= f.submit '変更', class:"btn btn-success" %>
                 <%end%>
               </span>

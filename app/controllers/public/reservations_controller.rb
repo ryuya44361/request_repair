@@ -1,5 +1,14 @@
 class Public::ReservationsController < ApplicationController
   
+  def day
+    @default_limits = DefaultLimit.all
+    @restrictions = Restriction.all
+    
+  end
+  
+  def time
+  end
+  
   def index
   end
   
@@ -16,12 +25,6 @@ class Public::ReservationsController < ApplicationController
   end
   
   def cancel
-  end
-  
-  def day
-  end
-  
-  def time
   end
   
   def confirm

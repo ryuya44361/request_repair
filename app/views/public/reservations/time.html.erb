@@ -1,0 +1,49 @@
+<main>
+   <div class = "container">
+     <div class = "row my-3">
+       <div class = "col-4">
+         <h2>予約画面</h2>
+       </div>
+     </div>
+     
+     <div class ="row">
+    <div class="col-4 px-5 mt-5">
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th>時間帯</th>
+              <th></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            
+            <% @restriction.each do |restriction| %>
+              <tr>
+                <td><%= restriction.default_limit.start_time.strftime('%H:%M') %>　～　<%= restriction.default_limit.finish_time.strftime('%H:%M') %></td>
+                <td>
+                  <% if restriction.update_status > 0 %>
+                    <%= f.select :headcount, *[0..20], selected: restriction.headcount %> 
+                  <% else %>
+                    <%= f.select :headcount, *[0..20], selected: restriction.default_limit.headcount %>
+                  <% end %>
+
+                  <%= f.hidden_field :reservation_day, :value => @day_params %>
+                  <%= f.submit '変更', class:"btn btn-success" %>
+                </td>
+              </tr>
+              <%end%>
+            <%end%>
+          </tbody>
+        
+        </table>
+        </div>
+    </div>
+    <div class = "row">
+      <div class = "col-10 text-right">
+
+      </div>
+    </div>
+
+  </div>
+</main>

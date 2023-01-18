@@ -7,6 +7,6 @@ class Reservation < ApplicationRecord
   belongs_to :restriction
   
   def decreased_capacity
-    .remaining_seat - number_of_people
+   
   end
 end
