@@ -7,15 +7,21 @@ class Public::ReservationsController < ApplicationController
   end
   
   def time
+    @day_params = params[:format]
+    @default_limits = DefaultLimit.all
+    @restriction = Restriction.where(reservation_day: @day_params)
+    if @restriction.blank?
+      @restriction = @default_limits
+    end
+  end
+  
+  def new
   end
   
   def index
   end
   
   def show
-  end
-  
-  def new
   end
   
   def create
@@ -36,7 +42,7 @@ class Public::ReservationsController < ApplicationController
   protected
 
     def reservations_parameters
-      params.require(:reservation).permit(:customer_id,:engineer_id,:genre_id,:restriction_id,:reservation_at,:model_number,:serial_number,:introduction)
+      params.require(:reservation).permit(:customer_id,:engineer_id,:genre_id,:completion_id,:reservation_day,:start_time,:finish_time,:model_number,:serial_number,:introduction)
     end
   
 end
