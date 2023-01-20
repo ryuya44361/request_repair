@@ -1,0 +1,55 @@
+<main>
+  <div class = "container">
+    <div class = "row my-3">
+      <div class = "col-4">
+        <h2>予約画面</h2>
+      </div>
+    </div>
+
+    <%= form_with model: @restriction,url: confirm_reservations_path do |f| %>
+      <div class = "row mb-3">
+        <div class = "col">
+          <label>ジャンル：</label>
+          <%= f.select :genre_id, @genres.map{ |genre| [genre.name, genre.id] } , include_blank: "--選択して下さい--" %>
+        </div>
+      </div>
+
+      <div class = "row mb-3">
+        <div class = "col">
+          <label>機種：</label>
+          <%= f.text_field :model_number %>
+        </div>
+      </div>
+
+      <div class = "row mb-3">
+        <div class = "col">
+          <label>シリアル：</label>
+          <%= f.text_field :serial_number %>
+        </div>
+      </div>
+
+      <div class = "row mb-3">
+        <div class = "col">
+          <label>現象画像：</label>
+          <%= f.file_field :image, accept: "image/*" %>　<!--複数枚投稿できるようにする-->
+        </div>
+      </div>
+
+      <div class = "row mb-3">
+        <div class = "col">
+          <label>内容</label><br />
+          <%= f.text_area :serial_number ,:size => "100" %>
+        </div>
+      </div>
+
+      <div class = "row justify-content-center mb-3">
+        <%= f.hidden_field :reservation_day %>
+        <%= f.hidden_field :start_time %>
+        <%= f.hidden_field :finish_time %>
+        <%= f.submit "予約する" ,class: "btn btn-success col-3"%>
+      </div>
+    <% end %>
+
+
+  </div>
+</main>

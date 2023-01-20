@@ -18,17 +18,14 @@
           <tbody>
             
             <% @restriction.each do |restriction| %>
-            <%= form_with model: @restriction,url: new_reservation_path do |f| %>
               <tr>
                 <td><%= restriction.default_limit.start_time.strftime('%H:%M') %>　～　<%= restriction.default_limit.finish_time.strftime('%H:%M') %></td>
                 <td>
-                  <%= f.hidden_field :start_time, :value => restriction.default_limit.start_time %>
-                  <%= f.hidden_field :finish_time, :value => restriction.default_limit.finish_time %>
-                  <%= f.hidden_field :reservation_day, :value => @day_params %>
-                  <%= f.submit '予約する', class:"btn btn-success" %>
+                  <%= link_to new_reservation_path(reservation_day: @day_params,start_time: restriction.default_limit.start_time,finish_time: restriction.default_limit.finish_time) do %>
+                    <%= "予約する" %>
+                  <% end %>
                 </td>
               </tr>
-              <%end%>
             <%end%>
           </tbody>
         

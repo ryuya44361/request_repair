@@ -16,21 +16,8 @@ class Public::ReservationsController < ApplicationController
   end
   
   def new
-  end
-  
-  def index
-  end
-  
-  def show
-  end
-  
-  def create
-  end
-  
-  def destroy
-  end
-  
-  def cancel
+    @reservation = Reservation.new
+    @genres = Genre.all
   end
   
   def confirm
@@ -39,10 +26,25 @@ class Public::ReservationsController < ApplicationController
   def complete
   end
   
+  def create
+  end
+  
+  def index
+  end
+  
+  def show
+  end
+  
+  def destroy
+  end
+  
+  def cancel
+  end
+  
   protected
 
     def reservations_parameters
-      params.require(:reservation).permit(:customer_id,:engineer_id,:genre_id,:completion_id,:reservation_day,:start_time,:finish_time,:model_number,:serial_number,:introduction)
+      params.require(:reservation).permit(:customer_id,:engineer_id,:genre_id,:completion_id,:image,:reservation_day,:start_time,:finish_time,:model_number,:serial_number,:introduction)
     end
   
 end
