@@ -21,8 +21,16 @@
               <tr>
                 <td><%= restriction.default_limit.start_time.strftime('%H:%M') %>　～　<%= restriction.default_limit.finish_time.strftime('%H:%M') %></td>
                 <td>
-                  <%= link_to new_reservation_path(reservation_day: @day_params,start_time: restriction.default_limit.start_time,finish_time: restriction.default_limit.finish_time) do %>
-                    <%= "予約する" %>
+                  <% if restriction.update_status > 0 && restriction.headcount > 0 %>
+                    <%= link_to new_reservation_path(reservation_day: @day_params,start_time: restriction.default_limit.start_time,finish_time: restriction.default_limit.finish_time) do %>
+                      <%= "予約する" %>
+                    <% end %>
+                  <% elsif  restriction.update_status = 0 && restriction.default_limit.headcount > 0 %>
+                    <%= link_to new_reservation_path(reservation_day: @day_params,start_time: restriction.default_limit.start_time,finish_time: restriction.default_limit.finish_time) do %>
+                      <%= "予約する" %>
+                    <% end %>
+                  <% else %>
+                    <p>ー</p>
                   <% end %>
                 </td>
               </tr>

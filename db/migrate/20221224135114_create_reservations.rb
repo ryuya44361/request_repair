@@ -6,7 +6,6 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.integer :customer_id, null: false
       t.integer :engineer_id, null: false
       t.integer :genre_id, null: false
-      t.integer :completion_id, null: false
       t.date :reservation_day, null: false
       t.time :start_time, null: false
       t.time :finish_time, null: false

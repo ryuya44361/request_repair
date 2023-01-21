@@ -46,6 +46,7 @@
         <%= f.hidden_field :reservation_day %>
         <%= f.hidden_field :start_time %>
         <%= f.hidden_field :finish_time %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id  %>
         <%= f.submit "予約する" ,class: "btn btn-success col-3"%>
       </div>
     <% end %>

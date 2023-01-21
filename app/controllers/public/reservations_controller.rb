@@ -10,9 +10,12 @@ class Public::ReservationsController < ApplicationController
     @day_params = params[:format]
     @default_limits = DefaultLimit.all
     @restriction = Restriction.where(reservation_day: @day_params)
-    if @restriction.blank?
-      @restriction = @default_limits
-    end
+      if @restriction.blank?
+        @default_limits.each do |default_limit|
+          Restriction.create(reservation_day: @day_params, default_limit_id: default_limit.id)
+        end
+        @restriction = Restriction.where(reservation_day: @day_params)
+      end
   end
   
   def new
@@ -21,6 +24,7 @@ class Public::ReservationsController < ApplicationController
   end
   
   def confirm
+    @reservation = Reservation.new(reservations_parameters)
   end
   
   def complete
