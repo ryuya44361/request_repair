@@ -4,6 +4,11 @@
       <div class = "col-4">
         <h2>予約画面</h2>
       </div>
+      <div class = "col-6">
+        <%= @day_params %>
+        <%= @start_time_params %> ~
+        <%= @finish_time_params %>
+      </div>
     </div>
 
     <%= form_with model: @restriction,url: confirm_reservations_path do |f| %>
@@ -38,14 +43,14 @@
       <div class = "row mb-3">
         <div class = "col">
           <label>内容</label><br />
-          <%= f.text_area :serial_number ,:size => "100" %>
+          <%= f.text_area :introduction ,:size => "100" %>
         </div>
       </div>
 
       <div class = "row justify-content-center mb-3">
-        <%= f.hidden_field :reservation_day %>
-        <%= f.hidden_field :start_time %>
-        <%= f.hidden_field :finish_time %>
+        <%= f.hidden_field :reservation_day, :value => @day_params %>
+        <%= f.hidden_field :start_time, :value => @start_time_params %>
+        <%= f.hidden_field :finish_time, :value => @finish_time_params %>
         <%= f.hidden_field :customer_id, :value => current_customer.id  %>
         <%= f.submit "予約する" ,class: "btn btn-success col-3"%>
       </div>
