@@ -34,9 +34,15 @@ class Public::ReservationsController < ApplicationController
   end
 
   def create
-  end
-
-  def index
+    @reservation = Reservation.new(reservations_parameters)
+    
+    if @reservation.save
+      redirect_to customer_path
+    else
+      @default_limits = DefaultLimit.all
+      @restrictions = Restriction.all
+      render day_reservations_path
+    end
   end
 
   def show
@@ -51,7 +57,7 @@ class Public::ReservationsController < ApplicationController
   protected
 
     def reservations_parameters
-      params.permit(:customer_id,:engineer_id,:genre_id,:completion_id,:image,:reservation_day,:start_time,:finish_time,:model_number,:serial_number,:introduction)
+      params.permit(:customer_id,:engineer_id,:genre_id,:completion_id,:repair_image,:reservation_day,:start_time,:finish_time,:model_number,:serial_number,:introduction)
     end
 
 end

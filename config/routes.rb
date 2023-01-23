@@ -8,7 +8,7 @@ scope module: :public do
   get "customer/secession" => "customers#secession"
   patch "customer/change" => "customers#change"
   
-  resources :reservations, only: [:index, :show, :new, :create, :destroy] do
+  resources :reservations, only: [:show, :new, :create, :destroy] do
     collection do
       get :cancel
       get :day
