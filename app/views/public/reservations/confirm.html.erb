@@ -5,49 +5,49 @@
           <h2>予約画面</h2>
         </div>
       </div>
-      
+
       <div class = "row mb-3">
         <label>氏名：</label>
         <%= @reservation.customer.last_name+@reservation.customer.first_name %>
       </div>
-      
+
       <div class = "row mb-3">
         <label>住所：</label>
-        <%= @reservation.customer.address_display %> 
+        <%= @reservation.customer.address_display %>
       </div>
-        
+
       <div class = "row mb-3 text-left">
         <div class = "col-4">
           <label>電話番号：</label>
-          <%= @reservation.customer.telephone_number %> 
+          <%= @reservation.customer.telephone_number %>
         </div>
-      
+
         <div class = "col-4">
           <label>メールアドレス：</label>
-          <%= @reservation.customer.email %> 
+          <%= @reservation.customer.email %>
         </div>
       </div>
-      
-      
+
+
       <h4 class = "my-3">対応内容</h4>
-      
+
       <div class = "row mb-3">
         <div class = "col-3">
           <label>ジャンル：</label>
           <%= @reservation.genre.name %>
         </div>
-        
+
         <div class = "col-3">
           <label>機種：</label>
           <%= @reservation.model_number %>
         </div>
-        
+
         <div class = "col-3">
           <label>シリアル：</label>
           <%= @reservation.serial_number %>
         </div>
       </div>
-      
+
       <div class = "row mb-3">
         <label>内容</label>
         <table class="table table-bordered border-dark" >
@@ -56,26 +56,25 @@
           </tr>
         </table>
       </div>
-      
+
       <div class = "row mb-3">
         <label>現象写真：</label>
-          <%= image_tag @reservation.get_repair_image(100,100) %>
+          <% if @reservation.repair_images.attached? %>
+            <% @reservation.repair_images.each do |repair_image| %>
+              <%= image_tag repair_image.variant(resize_to_limit: [100, 100]) %>
+            <% end %>
+          <% end %>
       </div>
-      
+
       <div class = "row mb-3">
-        <%= form_with model: @reservation,url: reservations_path do |f| %>
-          <%= f.hidden_field :reservation_day, :value => @reservation.reservation_day %>
-          <%= f.hidden_field :start_time, :value => @reservation.start_time %>
-          <%= f.hidden_field :finish_time, :value => @reservation.finish_time %>
-          <%= f.hidden_field :customer_id, :value => @reservation.customer_id %>
-          <%= f.hidden_field :genre_id, :value => @reservation.genre_id %>
-          <%= f.hidden_field :image, :value => @reservation.get_image %>
-          <%= f.hidden_field :model_number, :value => @reservation.model_number %>
-          <%= f.hidden_field :serial_number, :value => @reservation.serial_number  %>
-          <%= f.hidden_field :introduction, :value => @reservation.introduction  %>
-          <%= f.submit "本当に予約しますか？" ,class: "btn btn-success"%>
-        <% end %>
+        <div class = "col-4">
+          <% link_to "マイページへ戻る" ,reservations_path(@reservation.id), method: :delete, class: "btn btn-sm btn-danger m-1" %>
+        </div>
+
+        <div class = "col-4">
+          <% link_to "本当に予約しますか？" ,complete_reservations_path %>
+        </div>
       </div>
-      
+
     </div>
 </main>

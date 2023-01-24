@@ -14,9 +14,9 @@
               <th></th>
             </tr>
           </thead>
-        
+
           <tbody>
-            
+
             <% @restriction.each do |restriction| %>
               <tr>
                 <td><%= restriction.default_limit.start_time.strftime('%H:%M') %>　～　<%= restriction.default_limit.finish_time.strftime('%H:%M') %></td>
@@ -36,7 +36,7 @@
               </tr>
             <%end%>
           </tbody>
-        
+
         </table>
         </div>
     </div>

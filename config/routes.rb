@@ -13,7 +13,7 @@ scope module: :public do
       get :cancel
       get :day
       get :time
-      post :confirm
+      get :confirm
       get :complete
     end
   end
@@ -21,6 +21,13 @@ end
 
 scope module: :engineer do
   resource :engineers, only: [:show, :edit, :update] 
+  
+  resources :reservations, only: [:index, :show, :edit, :update] do
+    collection do
+      get :day
+      get :time
+    end
+  end
   
 end
 

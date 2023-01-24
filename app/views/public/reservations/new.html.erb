@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <%= form_with model: @restriction,url: confirm_reservations_path do |f| %>
+    <%= form_with model: @restriction,url: reservations_path do |f| %>
       <div class = "row mb-3">
         <div class = "col">
           <label>ジャンル：</label>
@@ -36,7 +36,7 @@
       <div class = "row mb-3">
         <div class = "col">
           <label>現象画像：</label>
-          <%= f.file_field :repair_image, placeholder: "ファイルを選択", accept: "image/*",class: "form-control-file image" %>　<!--複数枚投稿できるようにする-->
+          <%= f.file_field :repair_images, placeholder: "ファイルを選択", accept: "image/*", direct_upload: true, multiple: true,class: "form-control-file repair_image" %>　<!--複数枚投稿できるようにする-->
         </div>
       </div>
 

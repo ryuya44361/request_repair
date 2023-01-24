@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2023_01_20_145723) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "customer_id", null: false
-    t.integer "engineer_id", null: false
+    t.integer "engineer_id"
     t.integer "genre_id", null: false
     t.date "reservation_day", null: false
     t.time "start_time", null: false
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 2023_01_20_145723) do
     t.string "model_number", null: false
     t.string "serial_number", null: false
     t.text "introduction", null: false
+    t.boolean "complete_status", default: false, null: false
   end
 
   create_table "restrictions", force: :cascade do |t|

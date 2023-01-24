@@ -27,37 +27,37 @@ class Public::ReservationsController < ApplicationController
   end
 
   def confirm
-    @reservation = Reservation.new(reservations_parameters)
+    @reservation = Reservation.where(customer_id: current_customer.id)
+    # @reservation.get_repair_image(100,100)
+
   end
 
   def complete
+    
   end
 
   def create
-    @reservation = Reservation.new(reservations_parameters)
-    
-    if @reservation.save
-      redirect_to customer_path
-    else
-      @default_limits = DefaultLimit.all
-      @restrictions = Restriction.all
-      render day_reservations_path
-    end
+    @reservation = Reservation.new(reservations_params)
+    @reservation.save
+    redirect_to confirm_reservations_path
   end
 
   def show
   end
 
   def destroy
+    restriction = Restriction.find(params[:id])
+    restriction.destroy
+    redirect_to customers_path
   end
 
   def cancel
   end
 
-  protected
+  private
 
-    def reservations_parameters
-      params.permit(:customer_id,:engineer_id,:genre_id,:completion_id,:repair_image,:reservation_day,:start_time,:finish_time,:model_number,:serial_number,:introduction)
-    end
+  def reservations_params
+    params.require(:reservation).permit(:customer_id,:genre_id,:completion_id,:reservation_day, :start_time,:finish_time,:model_number,:serial_number,:introduction, repair_images: [])
+  end
 
 end
