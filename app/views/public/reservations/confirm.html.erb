@@ -8,7 +8,7 @@
 
       <div class = "row mb-3">
         <label>氏名：</label>
-        <%= @reservation.customer.last_name+@reservation.customer.first_name %>
+        <%= @reservation.customer.last_name %><%= @reservation.customer.first_name %>
       </div>
 
       <div class = "row mb-3">
@@ -72,7 +72,7 @@
         </div>
 
         <div class = "col-4">
-          <% link_to "本当に予約しますか？" ,complete_reservations_path %>
+          <% link_to "本当に予約しますか？" ,complete_reservations_path(@reservation.id) %>
         </div>
       </div>
 

@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 2023_01_20_145723) do
     t.string "model_number", null: false
     t.string "serial_number", null: false
     t.text "introduction", null: false
+    t.boolean "reservation_status", default: false, null: false
     t.boolean "complete_status", default: false, null: false
   end
 
