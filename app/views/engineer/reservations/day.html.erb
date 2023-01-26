@@ -1,0 +1,25 @@
+<main>
+  <div class = "container">
+    <div class = "row my-3">
+      <div class = "col-4">
+        <h2>予約一覧</h2>
+      </div>
+    </div>
+
+        <%= month_calendar do |date| %>
+          <%= date.day %><br />
+          
+          <% @reservation_day = @reservation.where(reservation_day: date,complete_status: false,reservation_status: true) %>
+          
+          <% if @reservation_day.count == 0 %>
+            <p> - </p>
+          <% elsif @reservation_day.count > 0 %>
+            <%= link_to engineer_reservations_path do %>
+              <p><%= @reservation_day.count %>件</p>
+            <% end %>
+          <% end %>
+        <% end %>
+        
+        
+  </div>
+</main>

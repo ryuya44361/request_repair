@@ -2,6 +2,9 @@ class Public::CustomersController < ApplicationController
   
   def show
     @customer = current_customer
+    @reservation = Reservation.find_by(customer_id: @customer.id,complete_status: false,reservation_status: true)
+    @completes = Reservation.where(customer_id: current_customer.id,complete_status: true)
+    # byebug
   end
 
   def edit

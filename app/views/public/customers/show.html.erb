@@ -5,9 +5,8 @@
     </div>
 
     <div class = "row m-3">
-      <p>登録情報
-        <span class = "ml-5"><%= link_to "編集する", edit_customers_path, class: "btn btn-sm btn-success" %></span>
-      </p>
+      <p class = "col-2 my-1">登録情報</p>
+      <%= link_to "編集する", edit_customers_path, class: "col-2 btn btn-sm btn-success" %>
     </div>
 
     <div class = "row ml-3 ">
@@ -15,7 +14,7 @@
         <tbody>
           <tr>
             <td class="table-active col-md-4">氏名</td>
-            <td class="col-md-8"><%= @customer.last_name %>　<%=@customer.first_name %></td>
+            <td class="col-md-8"><%= @customer.last_name %>　<%= @customer.first_name %></td>
           </tr>
           <tr>
             <td class="table-active">カナ</td>
@@ -39,6 +38,26 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    
+    <div class = "row m-3">
+      <p class = "col-2 my-1">予約確認</p>
+      
+      <% if @reservation.blank? %>
+        <p>現在予約していません。</p>
+      <% else %>
+        <%= link_to "予約確認", reservation_path(@reservation.id), class: "col-2 btn btn-sm btn-success" %>
+      <% end %>
+    </div>
+    
+    <div class = "row m-3">
+      <p class = "col-2 my-1">予約完了一覧</p>
+      
+      <% if @completes.blank? %>
+        <p>現在完了はありません。</p>
+      <% else %>
+        <%= link_to "予約確認", completions_path, class: "col-2 btn btn-sm btn-success" %>
+      <% end %>
     </div>
 
   </div>

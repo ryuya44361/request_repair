@@ -3,7 +3,6 @@ class Public::ReservationsController < ApplicationController
   def day
     @default_limits = DefaultLimit.all
     @restrictions = Restriction.all
-
   end
 
   def time
@@ -19,24 +18,33 @@ class Public::ReservationsController < ApplicationController
   end
 
   def new
-    @reservation = Reservation.new
-    @day_params = params[:reservation_day]
-    @start_time_params = params[:start_time]
-    @finish_time_params = params[:finish_time]
-    @genres = Genre.all
+    if Reservation.where(customer_id: current_customer.id,complete_status: false,reservation_status: true).exists?
+      redirect_to customers_path
+      
+    elsif Reservation.where(customer_id: current_customer.id,complete_status: false,reservation_status: false).exists?
+      redirect_to complete_reservations_path
+      
+    else
+      @reservation = Reservation.new
+      @day_params = params[:reservation_day]
+      @start_time_params = params[:start_time]
+      @finish_time_params = params[:finish_time]
+      @genres = Genre.all
+    end
   end
 
   def confirm
-    
-    @reservation = Reservation.where(customer_id: current_customer.id,complete_status: false,reservation_status: false)
-    # @reservation.get_repair_image(100,100)
+    @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: false)
+    # byebug
 
   end
 
   def complete
-    @restriction = Restriction.find(params[:id])
-    @restriction.update(reservation_status: "true")
-    
+    @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: false)
+    if @reservation.reservation_status == false 
+      @reservation.update(reservation_status: true)
+    end
+
   end
 
   def create
@@ -52,19 +60,23 @@ class Public::ReservationsController < ApplicationController
   end
 
   def show
-    @reservation = Reservation.where(customer_id: current_customer.id,complete_status: false)
+    @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: true)
+  end
+  
+  def cancel
+    @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: true)
   end
 
   def destroy
-    restriction = Restriction.find(params[:id])
-    restriction.destroy
+    reservation = Reservation.find(params[:id])
+    reservation.destroy
     redirect_to customers_path
   end
 
   private
 
   def reservations_params
-    params.require(:reservation).permit(:customer_id,:genre_id,:complete_status,:reservation_day, 
+    params.require(:reservation).permit(:customer_id,:genre_id,:complete_status,:reservation_day,
                                         :start_time,:finish_time,:model_number,:serial_number,:introduction, repair_images: [])
   end
 
