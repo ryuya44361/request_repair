@@ -6,7 +6,7 @@
 
     <div class = "row m-3">
       <p>登録情報
-        <span class = "ml-5"><%= link_to "編集する", edit_engineers_path, class: "btn btn-sm btn-success" %></span>
+        <span class = "ml-5"><%= link_to "編集する", edit_engineer_engineers_path, class: "btn btn-sm btn-success" %></span>
       </p>
     </div>
 
@@ -31,6 +31,26 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    
+    <div class = "row m-3">
+      <p class = "col-2 my-1">対応予定一覧</p>
+      
+      <% if @reservation.blank? %>
+        <p>現在予約していません。</p>
+      <% else %>
+        <%= link_to "対応予定", engineer_correspondences_path, class: "col-2 btn btn-sm btn-success" %>
+      <% end %>
+    </div>
+    
+    <div class = "row m-3">
+      <p class = "col-2 my-1">対応完了一覧</p>
+      
+      <% if @completes.blank? %>
+        <p>現在完了はありません。</p>
+      <% else %>
+        <%= link_to "対応完了", engineer_completions_path, class: "col-2 btn btn-sm btn-success" %>
+      <% end %>
     </div>
 
   </div>

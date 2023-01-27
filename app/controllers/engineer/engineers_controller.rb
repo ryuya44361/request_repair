@@ -2,6 +2,8 @@ class Engineer::EngineersController < ApplicationController
   
   def show
     @engineer = current_engineer
+    @reservation = Reservation.where(engineer_id: @engineer.id,complete_status: false,reservation_status: true)
+    @completes = Reservation.where(complete_status: true)
   end
 
   def edit
@@ -11,7 +13,7 @@ class Engineer::EngineersController < ApplicationController
   def update
     @engineer = current_engineer
     if @engineer.update(engineer_params)
-      redirect_to engineers_path
+      redirect_to engineer_engineers_path
     else
       render :edit
     end

@@ -20,7 +20,20 @@ scope module: :public do
 end
 
 namespace :engineer do
+  resource :engineers, only: [:show, :edit, :update]
 
+  resources :reservations, only: [:index, :show, :update] do
+    collection do
+      get :day
+      get :confirm
+    end
+  end
+  
+  resources :correspondences, only: [:index, :show, :update] do
+    collection do
+      get :completion
+    end
+  end
 
 end
 
@@ -42,14 +55,7 @@ scope module: :public do
 end
 
 namespace  :engineer do
-  resource :engineers, only: [:show, :edit, :update]
 
-  resources :reservations, only: [:index, :show, :update] do
-    collection do
-      get :day
-      get :confirm
-    end
-  end
 end
 
 namespace :admin do
