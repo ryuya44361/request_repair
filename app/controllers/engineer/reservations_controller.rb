@@ -25,6 +25,7 @@ class Engineer::ReservationsController < ApplicationController
       redirect_to engineer_engineers_path
     else
       redirect_to engineer_engineers_path 
+    end
   end
   
   private

@@ -29,7 +29,9 @@ namespace :engineer do
     end
   end
   
-  resources :correspondences, only: [:index, :show, :update] do
+  resources :correspondences, only: [:index, :show]
+  
+  resources :completions, only: [:index, :show, :update] do
     collection do
       get :completion
     end

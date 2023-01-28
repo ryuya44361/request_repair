@@ -1,0 +1,16 @@
+<main>
+  <div class = "container my-5">
+    <div class = "row justify-content-center ">
+      <h2>本当に完了にしますか？</h2>
+    </div>
+    
+    <div class = "row justify-content-center my-5">
+      <div class = "col-3">
+        <%= link_to "未完了" ,engineer_correspondence_path(@reservation.id), class: "col btn btn-sm btn-success m-1"%>
+      </div>
+      <div class = "col-3">
+        <%= link_to "完了" ,engineer_completion_path(@reservation.id), method: :patch, class: "col btn btn-sm btn-primary m-1"%>
+      </div>
+    </div>
+  </div>
+</main>
