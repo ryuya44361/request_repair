@@ -6,35 +6,18 @@
         </div>
         <div class = "col-6 my-2 text-right">
           <label>予約日：</label>
-        <%= @reservation.reservation_day.strftime('%Y/%m/%d') %>　
-        <%= @reservation.start_time.strftime('%H:%M') %> ~ 
+        <%= @reservation.reservation_day.strftime('%Y/%m/%d') %>
+        <%= @reservation.start_time.strftime('%H:%M') %> ~
         <%= @reservation.finish_time.strftime('%H:%M') %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">ユーザー情報</h4>
       <div class = "row mb-3">
         <label>氏名：</label>
         <%= @reservation.customer.last_name %><%= @reservation.customer.first_name %>
       </div>
 
-      <div class = "row mb-3">
-        <label>住所：</label>
-        <%= @reservation.customer.address_display %>
-      </div>
-
-      <div class = "row mb-3">
-        <div class = "col-3 pl-0">
-          <label>電話番号：</label>
-          <%= @reservation.customer.telephone_number %>
-        </div>
-
-        <div class = "col-4">
-          <label>メールアドレス：</label>
-          <%= @reservation.customer.email %>
-        </div>
-      </div>
-      
       <h4 class = "my-3">依頼内容</h4>
 
       <div class = "row mb-3">
@@ -71,15 +54,16 @@
             <% end %>
           <% end %>
       </div>
-      
+
       <h4 class = "my-3">対応内容</h4>
-      <%= form_with model: @completion,url: confirm_engineer_completions_path do |f| %>
       
       <div class = "row mb-3">
-        <div class = "col">
-          <label>内容</label><br />
-          <%= f.text_area :substance ,:size => "150" %>
-        </div>
+        <label>内容</label>
+        <table class="table table-bordered border-dark" >
+          <tr>
+            <td><%= @substance_params %></td>
+          </tr>
+        </table>
       </div>
 
       <div class = "row">
@@ -88,13 +72,14 @@
             <%= @reservation.engineer.last_name %><%= @reservation.engineer.first_name %>
         </div>
       </div>
-      
-      <div class = "row mb-3 justify-content-center">
-        <%= f.hidden_field :reservation_id, :value =>  @reservation.id  %>
-        <%= f.submit "完了する" ,class: "btn btn-success col-3"%>
-      </div>
-      
+
+      <%= form_with model: @completion,url: engineer_completions_path do |f| %>
+        <div class = "row mb-3 justify-content-center">
+          <%= f.hidden_field :reservation_id, :value =>  @reservation.id  %>
+          <%= f.hidden_field :substance, :value =>  @substance_params  %>
+          <%= f.submit "完了する" ,class: "btn btn-success col-3"%>
+        </div>
       <% end %>
-  
-    </div>
-  </main>
+      
+  </div>
+</main>

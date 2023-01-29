@@ -17,6 +17,9 @@ scope module: :public do
       get :complete
     end
   end
+  
+  resources :completions, only: [:index, :show]
+  
 end
 
 namespace :engineer do
@@ -31,9 +34,10 @@ namespace :engineer do
   
   resources :correspondences, only: [:index, :show]
   
-  resources :completions, only: [:index, :show, :update] do
+  resources :completions, only: [:index, :show, :create] do
     collection do
       get :completion
+      post :confirm
     end
   end
 

@@ -1,0 +1,94 @@
+<main>
+    <div class = "container">
+      <div class = "row my-3">
+        <div class = "col-4">
+          <h2>対応完了詳細</h2>
+        </div>
+        <div class = "col-6 my-2 text-right">
+          <label>対応完了日：</label>
+        <%= @completion.created_at.strftime('%Y/%m/%d %H:%M') %>　
+        </div>
+      </div>
+      
+      <h4 class = "my-3">ユーザー情報</h4>
+      <div class = "row mb-3">
+        <label>氏名：</label>
+        <%= @completion.reservation.customer.last_name %><%= @completion.reservation.customer.first_name %>
+      </div>
+
+      <div class = "row mb-3">
+        <label>住所：</label>
+        <%= @completion.reservation.customer.address_display %>
+      </div>
+
+      <div class = "row mb-3">
+        <div class = "col-3 pl-0">
+          <label>電話番号：</label>
+          <%= @completion.reservation.customer.telephone_number %>
+        </div>
+
+        <div class = "col-4">
+          <label>メールアドレス：</label>
+          <%= @completion.reservation.customer.email %>
+        </div>
+      </div>
+      
+      <h4 class = "my-3">対応内容</h4>
+
+      <div class = "row mb-3">
+        <div class = "col-3 pl-0">
+          <label>ジャンル：</label>
+          <%= @completion.reservation.genre.name %>
+        </div>
+
+        <div class = "col-3">
+          <label>機種：</label>
+          <%= @completion.reservation.model_number %>
+        </div>
+
+        <div class = "col-3">
+          <label>シリアル：</label>
+          <%= @completion.reservation.serial_number %>
+        </div>
+      </div>
+
+      <div class = "row mb-3">
+        <label>依頼内容</label>
+        <table class="table table-bordered border-dark" >
+          <tr>
+            <td><%= @completion.reservation.introduction %></td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class = "row mb-3">
+        <label>現象写真：</label>
+          <% if @completion.reservation.repair_images.attached? %>
+            <% @completion.reservation.repair_images.each do |repair_image| %>
+              <%= image_tag repair_image.variant(resize_to_limit: [10, 10]) %>
+            <% end %>
+          <% end %>
+      </div>
+      
+      <div class = "row mb-3">
+        <label>対応内容</label>
+        <table class="table table-bordered border-dark" >
+          <tr>
+            <td><%= @completion.substance %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class = "row">
+        <div class = "col text-right">
+          <label>対応者：</label>
+            <%= @completion.reservation.engineer.last_name %><%= @completion.reservation.engineer.first_name %>
+        </div>
+      </div>
+      
+      <div class = "row mb-3 justify-content-center">
+          <%= link_to "ホームへ戻る" ,engineer_engineers_path, class: "btn btn-sm btn-primary m-1 col-4" %>
+      </div>
+
+    </div>
+</main>
