@@ -65,6 +65,7 @@ namespace  :engineer do
 end
 
 namespace :admin do
+    get "/" => "homes#top"
     resources :genres, only: [:index, :create, :edit, :update,:destroy]
     resources :default_limits, only: [:index, :create,:destroy]
     resources :restrictions, only: [:update] do
@@ -76,7 +77,14 @@ namespace :admin do
     end
     resources :customers, only: [:index,:show, :edit, :update, :destroy]
     resources :engineers, only: [:index,:show, :edit, :update, :destroy]
+    resources :reservations, only: [:index, :show, :update] do
+      collection do
+        get :day
+      end
+    end
 end
+
+
 
 
 
