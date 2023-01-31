@@ -1,0 +1,43 @@
+<main>
+   <div class = "container">
+     <div class = "row my-3">
+       <div class = "col-4">
+         <h2>予約画面(<%= @day_params %>)</h2>
+       </div>
+     </div>
+ <div class ="row px-5 mt-5">
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th>時間帯</th>
+              <th>会員名</th>
+              <th>ジャンル名</th>
+              <th>住所</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <% @reservations.each do |reservation| %>
+              <tr>
+                <td><%= reservation.start_time.strftime('%H:%M') %>　～　<%= reservation.finish_time.strftime('%H:%M') %></td>
+                <td><%= reservation.customer.last_name %> <%= reservation.customer.first_name %></td>
+                <td><%= reservation.genre.name %></td>
+                <td>
+                  <%= reservation.customer.postal_code_display %><br />
+                  <%= reservation.customer.address %>
+                </td>
+                <td><%= link_to "詳細",admin_reservation_path(reservation.id) ,class: "btn btn-success"%></td>
+              </tr>
+            <%end%>
+          </tbody>
+
+        </table>
+        </div>
+        
+    <div class = "row justify-content-center">
+      <%= paginate @reservations %>
+    </div>
+  </div>
+</main>

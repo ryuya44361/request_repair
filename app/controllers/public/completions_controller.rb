@@ -6,6 +6,7 @@ class Public::CompletionsController < ApplicationController
 
   def show
     @completion = Completion.find(params[:id])
+    @evaluation = Evaluation.where(completion_id: @completion.id)
   end
   
 end

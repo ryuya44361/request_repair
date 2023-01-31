@@ -6,10 +6,10 @@
         </div>
         <div class = "col-6 my-2 text-right">
           <label>対応完了日：</label>
-        <%= @completion.created_at.strftime('%Y/%m/%d %H:%M') %>　
+        <%= @completion.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">ユーザー情報</h4>
       <div class = "row mb-3">
         <label>氏名：</label>
@@ -32,7 +32,7 @@
           <%= @completion.reservation.customer.email %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">対応内容</h4>
 
       <div class = "row mb-3">
@@ -60,7 +60,7 @@
           </tr>
         </table>
       </div>
-      
+
       <div class = "row mb-3">
         <label>現象写真：</label>
           <% if @completion.reservation.repair_images.attached? %>
@@ -69,7 +69,7 @@
             <% end %>
           <% end %>
       </div>
-      
+
       <div class = "row mb-3">
         <label>対応内容</label>
         <table class="table table-bordered border-dark" >
@@ -85,9 +85,19 @@
             <%= @completion.reservation.engineer.last_name %><%= @completion.reservation.engineer.first_name %>
         </div>
       </div>
-      
+
       <div class = "row mb-3 justify-content-center">
-          <%= link_to "ホームへ戻る" ,engineer_engineers_path, class: "btn btn-sm btn-primary m-1 col-4" %>
+        <div class = "col-4">
+          <%= link_to "ホームへ戻る" ,customers_path, class: "btn btn-sm btn-primary m-1 col" %>
+        </div>
+
+        <div class = "col-4">
+          <% if @evaluation.blank? %>
+            <%= link_to "評価する" ,new_evaluation_path(:completion_id => @completion.id), class: "btn btn-sm btn-primary m-1 col" %>
+          <% else %>
+            <%= link_to "評価を見る" ,evaluation_path(@completion.id), class: "btn btn-sm btn-primary m-1 col" %>
+          <% end %>
+        </div>
       </div>
 
     </div>

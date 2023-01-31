@@ -30,7 +30,7 @@
                   機種：<%= completion.reservation.model_number %><br />
                   S/N:　<%= completion.reservation.serial_number %>
                 </td>
-                <td><%= link_to "詳細",completion_path(completion.id) ,class: "btn btn-success"%></td>
+                <td><%= link_to "詳細",admin_completion_path(completion.id) ,class: "btn btn-success"%></td>
               </tr>
             <%end%>
           </tbody>

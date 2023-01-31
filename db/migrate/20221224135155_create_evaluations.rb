@@ -5,7 +5,7 @@ class CreateEvaluations < ActiveRecord::Migration[6.1]
       t.timestamps
       t.integer :completion_id, null: false
       t.integer :evaluation, null: false
-      t.text :comment, null: false
+      t.text :comment
     end
   end
 end

@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2023_01_20_145723) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "completion_id", null: false
     t.integer "evaluation", null: false
-    t.text "comment", null: false
+    t.text "comment"
   end
 
   create_table "genres", force: :cascade do |t|

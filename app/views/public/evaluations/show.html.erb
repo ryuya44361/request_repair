@@ -1,0 +1,91 @@
+<main>
+  <div class = "container my-5">
+    <div class = "row justify-content-center ">
+      <h2>評価画面</h2>
+    </div>
+
+    <div class = "row">
+      <p>５段階評価</p>
+    </div>
+    <div class = "row justify-content-center my-5">
+
+      <table class="table table-hover table-inverse">
+        <thead>
+            <tr>
+              <th>評価しない</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <tr>
+                <tb>
+                  <% if @evaluation.evaluation == 0 %>
+                    〇
+                  <% else %>
+                    
+                  <% end %>
+                </tb>
+                <tb>
+                  <% if @evaluation.evaluation == 1 %>
+                    〇
+                  <% else %>
+                    
+                  <% end %>
+                </tb>
+                <tb>
+                  <% if @evaluation.evaluation == 2 %>
+                    〇
+                  <% else %>
+                    
+                  <% end %>
+                </tb>
+                <tb>
+                  <% if @evaluation.evaluation == 3 %>
+                    〇
+                  <% else %>
+                    
+                  <% end %>
+                </tb>
+                <tb>
+                  <% if @evaluation.evaluation == 4 %>
+                    〇
+                  <% else %>
+                    
+                  <% end %>
+                </tb>
+                <tb>
+                  <% if @evaluation.evaluation == 5 %>
+                    〇
+                  <% else %>
+                    
+                  <% end %>
+                </tb>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <div class = "justify-content-center my-5">
+        <label>コメント</label>
+        
+        <table class="table table-bordered border-dark">
+          <tbody>
+            <tr>
+              <td><%= @evaluation.comment %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+        <div class = "justify-content-center my-5">
+          <%= link_to "詳細に戻る" ,completion_path(@evaluation.completion_id), class: "btn btn-sm btn-primary m-1 col" %>
+        </div>
+
+    </div>
+  </div>
+</main>

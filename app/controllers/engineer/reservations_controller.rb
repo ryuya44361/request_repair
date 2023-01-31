@@ -24,7 +24,7 @@ class Engineer::ReservationsController < ApplicationController
       reservation.update(engineer_id: current_engineer.id)
       redirect_to engineer_engineers_path
     else
-      redirect_to engineer_engineers_path
+      redirect_to engineer_reservation_path(reservation.id)
     end
   end
 

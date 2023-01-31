@@ -19,6 +19,7 @@ scope module: :public do
   end
   
   resources :completions, only: [:index, :show]
+  resources :evaluations, only: [:new,:show,:create]
   
 end
 
@@ -40,6 +41,8 @@ namespace :engineer do
       post :confirm
     end
   end
+  
+  resources :evaluations, only: [:show]
 
 end
 
@@ -65,7 +68,6 @@ namespace  :engineer do
 end
 
 namespace :admin do
-    get "/" => "homes#top"
     resources :genres, only: [:index, :create, :edit, :update,:destroy]
     resources :default_limits, only: [:index, :create,:destroy]
     resources :restrictions, only: [:update] do
@@ -76,12 +78,14 @@ namespace :admin do
       end
     end
     resources :customers, only: [:index,:show, :edit, :update, :destroy]
-    resources :engineers, only: [:index,:show, :edit, :update, :destroy]
+    resources :engineers, only: [:index,:show]
+    resources :completions, only: [:index, :show, :create]
     resources :reservations, only: [:index, :show, :update] do
       collection do
         get :day
       end
     end
+    resources :evaluations, only: [:show,:edit,:update]
 end
 
 

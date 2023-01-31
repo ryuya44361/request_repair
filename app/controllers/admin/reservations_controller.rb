@@ -1,20 +1,25 @@
 class Admin::ReservationsController < ApplicationController
+  
+  def day
+    @reservations = Reservation.all
+  end
 
   def index
     @day_params = params[:format]
-    @reservation = Reservation.where(reservation_day: @day_params,complete_status: false,reservation_status: true).page(params[:page])
+    @reservations = Reservation.where(reservation_day: @day_params,complete_status: false,reservation_status: true).page(params[:page])
   end
   
   def show
     @reservation = Reservation.find(params[:id])
+    @engineers = Engineer.all
   end
   
   def update
-     @reservation = Reservation.find(params[:id])
+     reservation = Reservation.find(params[:id])
      if reservation.update(reservations_params)
-       
+       redirect_to day_admin_reservations_path
      else
-       
+       redirect_to admin_reservation_path(reservation.id)
      end
   end
   

@@ -1,0 +1,51 @@
+<main>
+  <div class = "container my-5">
+    <div class = "row justify-content-center ">
+      <h2>評価画面</h2>
+    </div>
+
+    <div class = "row">
+      <p>５段階評価</p>
+    </div>
+    <div class = "row justify-content-center my-5">
+
+      <%= form_with model: @evaluation,url: evaluations_path do |f| %>
+      <table class="table table-hover table-inverse">
+        <thead>
+            <tr>
+              <th>評価しない</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+            </tr>
+        </thead>
+
+          <tbody>
+              <tr>
+                <tb><%= f.radio_button :evaluation, 0 %></tb>
+                <tb><%= f.radio_button :evaluation, 1 %></tb>
+                <tb><%= f.radio_button :evaluation, 2 %></tb>
+                <tb><%= f.radio_button :evaluation, 3 %></tb>
+                <tb><%= f.radio_button :evaluation, 4 %></tb>
+                <tb><%= f.radio_button :evaluation, 5 %></tb>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <div class = "justify-content-center my-5">
+          <p>コメント</p>
+          <%= f.text_area :comment ,:size => "150" %>
+        </div>
+
+        <div class = "justify-content-center my-5">
+          <%= f.hidden_field :completion_id, :value => @completion_params  %>
+          <%= f.submit "評価する" ,class: "btn btn-success col-4"%>
+        </div>
+        <%end%>
+
+    </div>
+  </div>
+</main>
