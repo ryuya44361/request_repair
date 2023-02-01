@@ -1,0 +1,52 @@
+<main>
+  <div class = "container my-5">
+    <div class = "row justify-content-center ">
+      <h2>評価画面</h2>
+    </div>
+
+    <div class = "row">
+      <p>５段階評価</p>
+    </div>
+    <div class = "row justify-content-center my-5">
+
+      <%= form_with model: @evaluation,url: admin_evaluation_path(@evaluation.id),method: :patch  do |f| %>
+      <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+              <th>評価しない</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+            </tr>
+        </thead>
+
+          <tbody>
+              <tr>
+                <td><%= f.radio_button :evaluation, 0 %></td>
+                <td><%= f.radio_button :evaluation, 1 %></td>
+                <td><%= f.radio_button :evaluation, 2 %></td>
+                <td><%= f.radio_button :evaluation, 3 %></td>
+                <td><%= f.radio_button :evaluation, 4 %></td>
+                <td><%= f.radio_button :evaluation, 5 %></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <div class = "justify-content-center my-5">
+          <p>コメント</p>
+          <%= f.text_area :comment ,:size => "150" %>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-12 col-md-4 mx-auto">
+            <%= f.submit "評価編集する" ,class: "btn btn-success btn-block"%>
+          </div>
+        </div>
+        <%end%>
+
+    </div>
+  </div>
+</main>

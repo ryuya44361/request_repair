@@ -60,13 +60,6 @@ end
     sessions: "admin/sessions"
 }
 
-scope module: :public do
-end
-
-namespace  :engineer do
-
-end
-
 namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update,:destroy]
     resources :default_limits, only: [:index, :create,:destroy]

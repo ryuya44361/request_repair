@@ -39,8 +39,11 @@
             <p class = "col-9">有効</p>
           <% end %>
     </div>
-    <div class = "row justify-content-center">
-      <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-sm btn-success col-4 mr-5" %>
+    
+    <div class="row mt-4">
+      <div class="col-12 col-md-4 mx-auto">
+        <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success btn-block" %>
+      </div>
     </div>
       
     </div>

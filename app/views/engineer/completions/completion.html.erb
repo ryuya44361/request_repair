@@ -53,17 +53,15 @@
           <%= @reservation.serial_number %>
         </div>
       </div>
+      
+      <label>依頼内容</label>
+        <div class="card">
+          <div class="card-body">
+            <%= @reservation.introduction %>
+          </div>
+        </div>
 
-      <div class = "row mb-3">
-        <label>内容</label>
-        <table class="table table-bordered border-dark" >
-          <tr>
-            <td><%= @reservation.introduction %></td>
-          </tr>
-        </table>
-      </div>
-
-      <div class = "row mb-3">
+      <div class = "row my-3">
         <label>現象写真：</label>
           <% if @reservation.repair_images.attached? %>
             <% @reservation.repair_images.each do |repair_image| %>
@@ -77,7 +75,7 @@
       
       <div class = "row mb-3">
         <div class = "col">
-          <label>内容</label><br />
+          <label>対応内容</label><br />
           <%= f.text_area :substance ,:size => "150" %>
         </div>
       </div>
@@ -89,9 +87,11 @@
         </div>
       </div>
       
-      <div class = "row mb-3 justify-content-center">
-        <%= f.hidden_field :reservation_id, :value =>  @reservation.id  %>
-        <%= f.submit "完了する" ,class: "btn btn-success col-3"%>
+      <div class="row mt-4">
+        <div class="col-12 col-md-4 mx-auto">
+          <%= f.hidden_field :reservation_id, :value =>  @reservation.id  %>
+          <%= f.submit "完了する" ,class: "btn btn-success btn-block"%>
+        </div>
       </div>
       
       <% end %>

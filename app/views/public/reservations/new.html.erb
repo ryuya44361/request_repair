@@ -42,12 +42,14 @@
         </div>
       </div>
 
-      <div class = "row justify-content-center mb-3">
-        <%= f.hidden_field :reservation_day, :value => @day_params %>
-        <%= f.hidden_field :start_time, :value => @start_time_params %>
-        <%= f.hidden_field :finish_time, :value => @finish_time_params %>
-        <%= f.hidden_field :customer_id, :value => current_customer.id  %>
-        <%= f.submit "予約する" ,class: "btn btn-success col-3"%>
+      <div class="row mt-4">
+        <div class="col-12 col-md-4 mx-auto">
+          <%= f.hidden_field :reservation_day, :value => @day_params %>
+          <%= f.hidden_field :start_time, :value => @start_time_params %>
+          <%= f.hidden_field :finish_time, :value => @finish_time_params %>
+          <%= f.hidden_field :customer_id, :value => current_customer.id  %>
+          <%= f.submit "予約する" ,class: "btn btn-success btn-block"%>
+        </div>
       </div>
     <% end %>
 

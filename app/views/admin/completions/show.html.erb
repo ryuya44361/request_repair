@@ -51,15 +51,13 @@
           <%= @completion.reservation.serial_number %>
         </div>
       </div>
-
-      <div class = "row mb-3">
-        <label>依頼内容</label>
-        <table class="table table-bordered border-dark" >
-          <tr>
-            <td><%= @completion.reservation.introduction %></td>
-          </tr>
-        </table>
-      </div>
+      
+      <label>依頼内容</label>
+        <div class="card">
+          <div class="card-body">
+            <%= @completion.reservation.introduction %>
+          </div>
+        </div>
 
       <div class = "row mb-3">
         <label>現象写真：</label>
@@ -69,15 +67,13 @@
             <% end %>
           <% end %>
       </div>
-
-      <div class = "row mb-3">
-        <label>対応内容</label>
-        <table class="table table-bordered border-dark" >
-          <tr>
-            <td><%= @completion.substance %></td>
-          </tr>
-        </table>
-      </div>
+      
+      <label>対応内容</label>
+        <div class="card">
+          <div class="card-body">
+            <%= @completion.substance %>
+          </div>
+        </div>
 
       <div class = "row">
         <div class = "col text-right">
@@ -86,8 +82,18 @@
         </div>
       </div>
 
-      <div class = "row mb-3 justify-content-center">
-          <%= link_to "対応予約一覧" ,day_admin_reservations_path, class: "btn btn-sm btn-primary m-1 col-4" %>
+      <div class="row mt-4">
+        <div class="col-12 col-md-4 mx-auto">
+          <%= link_to "対応予約一覧" ,day_admin_reservations_path, class: "btn btn-primary btn-block" %>
+        </div>
+        
+        <div class="col-12 col-md-4 mx-auto">
+          <% if @evaluation.blank? %>
+            評価されていません
+          <% else %>
+            <%= link_to "評価を見る" ,admin_evaluation_path(@completion.id), class: "btn btn-primary btn-block" %>
+          <% end %>
+        </div>
       </div>
 
     </div>

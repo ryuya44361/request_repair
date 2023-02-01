@@ -36,17 +36,15 @@
           <%= @reservation.serial_number %>
         </div>
       </div>
+      
+      <label>依頼内容</label>
+        <div class="card">
+          <div class="card-body">
+            <%= @reservation.introduction %>
+          </div>
+        </div>
 
-      <div class = "row mb-3">
-        <label>内容</label>
-        <table class="table table-bordered border-dark" >
-          <tr>
-            <td><%= @reservation.introduction %></td>
-          </tr>
-        </table>
-      </div>
-
-      <div class = "row mb-3">
+      <div class = "row my-3">
         <label>現象写真：</label>
           <% if @reservation.repair_images.attached? %>
             <% @reservation.repair_images.each do |repair_image| %>
@@ -57,14 +55,12 @@
 
       <h4 class = "my-3">対応内容</h4>
       
-      <div class = "row mb-3">
-        <label>内容</label>
-        <table class="table table-bordered border-dark" >
-          <tr>
-            <td><%= @substance_params %></td>
-          </tr>
-        </table>
-      </div>
+      <label>対応内容</label>
+        <div class="card">
+          <div class="card-body">
+            <%= @substance_params %>
+          </div>
+        </div>
 
       <div class = "row">
         <div class = "col text-right">
@@ -74,10 +70,12 @@
       </div>
 
       <%= form_with model: @completion,url: engineer_completions_path do |f| %>
-        <div class = "row mb-3 justify-content-center">
-          <%= f.hidden_field :reservation_id, :value =>  @reservation.id  %>
-          <%= f.hidden_field :substance, :value =>  @substance_params  %>
-          <%= f.submit "完了する" ,class: "btn btn-success col-3"%>
+        <div class="row mt-4">
+          <div class="col-12 col-md-4 mx-auto">
+            <%= f.hidden_field :reservation_id, :value =>  @reservation.id  %>
+            <%= f.hidden_field :substance, :value =>  @substance_params  %>
+            <%= f.submit "完了する" ,class: "btn btn-success btn-block"%>
+          </div>
         </div>
       <% end %>
       

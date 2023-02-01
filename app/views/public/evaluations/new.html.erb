@@ -10,7 +10,7 @@
     <div class = "row justify-content-center my-5">
 
       <%= form_with model: @evaluation,url: evaluations_path do |f| %>
-      <table class="table table-hover table-inverse">
+      <table class="table table-bordered border-primary">
         <thead>
             <tr>
               <th>評価しない</th>
@@ -24,12 +24,12 @@
 
           <tbody>
               <tr>
-                <tb><%= f.radio_button :evaluation, 0 %></tb>
-                <tb><%= f.radio_button :evaluation, 1 %></tb>
-                <tb><%= f.radio_button :evaluation, 2 %></tb>
-                <tb><%= f.radio_button :evaluation, 3 %></tb>
-                <tb><%= f.radio_button :evaluation, 4 %></tb>
-                <tb><%= f.radio_button :evaluation, 5 %></tb>
+                <td><%= f.radio_button :evaluation, 0 %></td>
+                <td><%= f.radio_button :evaluation, 1 %></td>
+                <td><%= f.radio_button :evaluation, 2 %></td>
+                <td><%= f.radio_button :evaluation, 3 %></td>
+                <td><%= f.radio_button :evaluation, 4 %></td>
+                <td><%= f.radio_button :evaluation, 5 %></td>
               </tr>
 
           </tbody>
@@ -40,9 +40,11 @@
           <%= f.text_area :comment ,:size => "150" %>
         </div>
 
-        <div class = "justify-content-center my-5">
-          <%= f.hidden_field :completion_id, :value => @completion_params  %>
-          <%= f.submit "評価する" ,class: "btn btn-success col-4"%>
+        <div class="row mt-4">
+          <div class="col-12 col-md-4 mx-auto">
+            <%= f.hidden_field :completion_id, :value => @completion_params  %>
+            <%= f.submit "評価する" ,class: "btn btn-success btn-block"%>
+          </div>
         </div>
         <%end%>
 

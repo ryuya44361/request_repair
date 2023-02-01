@@ -14,7 +14,13 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <p class="navbar-brand my-0">LOGO</p>
+          <% if admin_signed_in? %>
+            <p class="navbar-brand my-0">リクリペ</p>
+          <% elsif engineer_signed_in? %>
+            <p class="navbar-brand my-0">リクリペ</p>
+          <% else %>
+            <a class="navbar-brand" href="/">リクリペ</a>
+          <%end%>
           
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -23,31 +29,126 @@
 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-
-          <li class="nav-item">
-            
-              <p class = "nav-link text-light">商品一覧</p>
+              
+        <% if admin_signed_in? %>
         
-          </li>
-
           <li class="nav-item">
-            
-              <p class = "nav-link text-light">会員一覧</p>
-            
+            <%= link_to admin_default_limits_path, class: 'nav-link text-light' do %>
+              予約設定
+            <%end%>
           </li>
-
-          <li class="nav-item">
-            
-             <p class = "nav-link text-light">注文履歴一覧</p>
-            
-          </li>
-
-          <li class="nav-item">
           
-             <p class = "nav-link text-light">ジャンル一覧</p>
+          <li class="nav-item">
+            <%= link_to day_admin_restrictions_path, class: 'nav-link text-light' do %>
+              予約制限
+            <%end%>
+          </li>
             
+          <li class="nav-item">
+            <%= link_to day_admin_reservations_path, class: 'nav-link text-light' do %>
+              予約一覧
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to admin_completions_path, class: 'nav-link text-light' do %>
+              対応完了一覧
+            <%end%>
           </li>
 
+          <li class="nav-item">
+            <%= link_to admin_customers_path, class: 'nav-link text-light' do %>
+              ユーザー一覧
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to admin_genres_path, class: 'nav-link text-light' do %>
+              ジャンル一覧
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
+              ログアウト
+            <%end%>
+          </li>
+          
+        <% elsif engineer_signed_in? %>
+        
+          <li class="nav-item">
+            <%= link_to engineer_engineers_path, class: 'nav-link text-light' do %>
+              マイページ
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to day_engineer_reservations_path, class: 'nav-link text-light' do %>
+              予約一覧
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to engineer_completions_path, class: 'nav-link text-light' do %>
+              対応完了一覧
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to engineer_correspondences_path, class: 'nav-link text-light' do %>
+              対応予定一覧
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to destroy_engineer_session_path, method: :delete, class: 'nav-link text-light' do %>
+              ログアウト
+            <%end%>
+          </li>
+          
+        <% elsif customer_signed_in? %>
+          
+          <li class="nav-item">
+            <%= link_to customers_path, class: 'nav-link text-light' do %>
+              マイページ
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to day_reservations_path, class: 'nav-link text-light' do %>
+              予約一覧
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to completions_path, class: 'nav-link text-light' do %>
+              対応完了一覧
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
+              ログアウト
+            <%end%>
+          </li>
+        
+        <% else %>
+        
+          <li class="nav-item">
+            <%= link_to about_path, class: 'nav-link text-light' do %>
+              アバウト
+            <%end%>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to customer_session_path, class: 'nav-link text-light' do %>
+              ログイン
+            <%end%>
+          </li>
+        
+        
+        <% end %>
+          
             </ul>
           </div>
         </div>
