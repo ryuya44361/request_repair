@@ -1,4 +1,5 @@
 class Public::CompletionsController < ApplicationController
+  before_action :authenticate_customer!
   
   def index
     @completions = Completion.page(params[:page])

@@ -65,7 +65,7 @@
         <label>現象写真：</label>
           <% if @reservation.repair_images.attached? %>
             <% @reservation.repair_images.each do |repair_image| %>
-              <%= image_tag repair_image.variant(resize_to_limit: [10, 10]) %>
+              <%= image_tag repair_image.variant(resize_to_limit: [100, 100]) %>
             <% end %>
           <% end %>
       </div>

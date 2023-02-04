@@ -1,4 +1,5 @@
 class Public::EvaluationsController < ApplicationController
+  before_action :authenticate_customer!
   
   def new
     @completion_params = params[:completion_id]

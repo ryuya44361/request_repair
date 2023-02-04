@@ -1,4 +1,5 @@
 class Admin::EngineersController < ApplicationController
+  before_action :authenticate_admin!
   
   def index
     @engineers = Engineer.page(params[:page])

@@ -1,4 +1,5 @@
 class Engineer::CompletionsController < ApplicationController
+  before_action :authenticate_engineer!
 
   def completion
     @reservation = Reservation.find(params[:id])

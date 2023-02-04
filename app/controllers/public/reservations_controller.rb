@@ -1,4 +1,5 @@
 class Public::ReservationsController < ApplicationController
+  before_action :authenticate_customer!
 
   def day
     @default_limits = DefaultLimit.all
@@ -20,10 +21,10 @@ class Public::ReservationsController < ApplicationController
   def new
     if Reservation.where(customer_id: current_customer.id,complete_status: false,reservation_status: true).exists?
       redirect_to customers_path
-      
+
     elsif Reservation.where(customer_id: current_customer.id,complete_status: false,reservation_status: false).exists?
       redirect_to complete_reservations_path
-      
+
     else
       @reservation = Reservation.new
       @day_params = params[:reservation_day]
@@ -41,7 +42,7 @@ class Public::ReservationsController < ApplicationController
 
   def complete
     @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: false)
-    if @reservation.reservation_status == false 
+    if @reservation.reservation_status == false
       @reservation.update(reservation_status: true)
     end
 
@@ -62,7 +63,7 @@ class Public::ReservationsController < ApplicationController
   def show
     @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: true)
   end
-  
+
   def cancel
     @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: true)
   end

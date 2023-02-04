@@ -1,4 +1,5 @@
 class Admin::CompletionsController < ApplicationController
+  before_action :authenticate_admin!
   
   def index
     @completions = Completion.page(params[:page])

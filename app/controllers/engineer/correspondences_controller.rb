@@ -1,4 +1,5 @@
 class Engineer::CorrespondencesController < ApplicationController
+  before_action :authenticate_engineer!
 
   def index
     @reservations = Reservation.where(engineer_id: current_engineer.id,complete_status: false,reservation_status: true).page(params[:page])

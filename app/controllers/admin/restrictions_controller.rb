@@ -1,4 +1,5 @@
 class Admin::RestrictionsController < ApplicationController
+  before_action :authenticate_admin!
 
   def day
     @default_limits = DefaultLimit.all

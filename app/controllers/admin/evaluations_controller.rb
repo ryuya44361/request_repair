@@ -1,4 +1,5 @@
 class Admin::EvaluationsController < ApplicationController
+  before_action :authenticate_admin!
   
   def show
     @evaluation = Evaluation.find_by(completion_id: params[:id])

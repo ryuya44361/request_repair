@@ -1,4 +1,5 @@
 class Engineer::EngineersController < ApplicationController
+  before_action :authenticate_engineer!
   
   def show
     @engineer = current_engineer

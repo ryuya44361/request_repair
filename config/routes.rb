@@ -17,10 +17,10 @@ scope module: :public do
       get :complete
     end
   end
-  
+
   resources :completions, only: [:index, :show]
   resources :evaluations, only: [:new,:show,:create]
-  
+
 end
 
 namespace :engineer do
@@ -32,16 +32,16 @@ namespace :engineer do
       get :confirm
     end
   end
-  
+
   resources :correspondences, only: [:index, :show]
-  
+
   resources :completions, only: [:index, :show, :create] do
     collection do
       get :completion
       post :confirm
     end
   end
-  
+
   resources :evaluations, only: [:show]
 
 end
@@ -50,7 +50,7 @@ end
     registrations: "engineer/registrations",
     sessions: 'engineer/sessions'
   }
-
+  
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -71,7 +71,7 @@ namespace :admin do
       end
     end
     resources :customers, only: [:index,:show, :edit, :update, :destroy]
-    resources :engineers, only: [:index,:show]
+    resources :engineers, only: [:index,:show, :edit]
     resources :completions, only: [:index, :show, :create]
     resources :reservations, only: [:index, :show, :update] do
       collection do

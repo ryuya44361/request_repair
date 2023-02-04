@@ -1,4 +1,5 @@
 class Engineer::ReservationsController < ApplicationController
+  before_action :authenticate_engineer!
 
   def day
     @reservations = Reservation.all
