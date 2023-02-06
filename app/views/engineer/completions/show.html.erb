@@ -6,10 +6,10 @@
         </div>
         <div class = "col-6 my-2 text-right">
           <label>対応完了日：</label>
-        <%= @completion.created_at.strftime('%Y/%m/%d %H:%M') %>　
+        <%= @completion.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">ユーザー情報</h4>
       <div class = "row mb-3">
         <label>氏名：</label>
@@ -32,7 +32,7 @@
           <%= @completion.reservation.customer.email %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">対応内容</h4>
 
       <div class = "row mb-3">
@@ -51,45 +51,46 @@
           <%= @completion.reservation.serial_number %>
         </div>
       </div>
-      
+
       <label>依頼内容</label>
         <div class="card">
           <div class="card-body">
             <%= @completion.reservation.introduction %>
           </div>
         </div>
-      
+
       <div class = "row my-3">
-        <label>現象写真：</label>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_id">
-            モーダルボタン
-          </button>
-          
-          <div class="modal fade" id="Modal_id" tabindex="-1" aria-labelledby="modal_id_Label" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">現象写真</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                <div class="modal-body">
+        <label class = "my-1">現象写真：</label>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          確認ボタン
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">現象写真</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
                   <% if @completion.reservation.repair_images.attached? %>
                     <% @completion.reservation.repair_images.each do |repair_image| %>
-                      <%= image_tag repair_image.variant(resize_to_limit: [100, 100]) %>
+                      <%= image_tag repair_image.variant(resize_to_limit: [450, 450]) ,class: "my-1"%>
                     <% end %>
                   <% end %>
-                </div>
-                
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-                </div>
-                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
               </div>
             </div>
           </div>
+        </div>
       </div>
-      
+
       <label>対応内容</label>
         <div class="card">
           <div class="card-body">
@@ -103,12 +104,12 @@
             <%= @completion.reservation.engineer.last_name %><%= @completion.reservation.engineer.first_name %>
         </div>
       </div>
-      
+
       <div class="row mt-4">
         <div class="col-12 col-md-4 mx-auto">
           <%= link_to "ホームへ戻る" ,engineer_engineers_path, class: "btn btn-primary btn-block" %>
         </div>
-      
+
         <div class="col-12 col-md-4 mx-auto">
           <% if @evaluation.blank? %>
             評価されていません

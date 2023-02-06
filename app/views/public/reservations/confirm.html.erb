@@ -55,13 +55,36 @@
           </div>
         </div>
 
-      <div class = "row mb-3">
-        <label>現象写真：</label>
-          <% if @reservation.repair_images.attached? %>
-            <% @reservation.repair_images.each do |repair_image| %>
-              <%= image_tag repair_image.variant(resize_to_limit: [100, 100]) %>
-            <% end %>
-          <% end %>
+      <div class = "row my-3">
+        <label class = "my-1">現象写真：</label>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          確認ボタン
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">現象写真</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <% if @reservation.repair_images.attached? %>
+                  <% @reservation.repair_images.each do |repair_image| %>
+                    <%= image_tag repair_image.variant(resize_to_limit: [450, 450]) ,class: "my-1" %><br />
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="row mt-4">

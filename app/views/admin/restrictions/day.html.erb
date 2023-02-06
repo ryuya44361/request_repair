@@ -4,15 +4,12 @@
        <div class = "col-4">
          <h2>予約制限</h2>
        </div>
-       <div class = "col-6 text-right">
-            <p>デフォルト人数：
-              <span>
-                <%= form_with model: @default_limits,url: update_all_admin_restrictions_path, method: :patch do |f| %>
-                  <%= f.select :headcount, *[0..20], selected: @headcount %>
-                  <%= f.submit '変更', class:"btn btn-success" %>
-                <%end%>
-              </span>
-            </p>
+       <div class = "col-6 text-right my-1">
+          <%= form_with model: @default_limits,url: update_all_admin_restrictions_path, method: :patch do |f| %>
+            <label>デフォルト人数：</label>
+            <%= f.select :headcount, *[0..20], selected: @headcount %>
+            <%= f.submit '変更', class:"btn btn-success" %>
+          <%end%>
        </div>
      </div>
     

@@ -15,9 +15,9 @@
             # 以上、予約上限の計算変数
          %>
          
-         <% if @restrictions_sum + @default_restrictions_sum > 0 %>
+         <% if date.tomorrow && @restrictions_sum + @default_restrictions_sum > 0 %>
          <p> 〇 </p>
-         <% elsif @restrictions_day.blank? && @default_limits_sum > 0 %>
+         <% elsif date.tomorrow && @restrictions_day.blank? && @default_limits_sum > 0 %>
          <p> 〇 </p>
          <% else %>
          <p> - </p>

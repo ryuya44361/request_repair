@@ -70,8 +70,8 @@ namespace :admin do
         get :time
       end
     end
-    resources :customers, only: [:index,:show, :edit, :update, :destroy]
-    resources :engineers, only: [:index,:show, :edit]
+    resources :customers, only: [:index,:show, :edit, :update]
+    resources :engineers, only: [:index,:show, :edit, :update]
     resources :completions, only: [:index, :show, :create]
     resources :reservations, only: [:index, :show, :update] do
       collection do

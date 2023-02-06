@@ -16,8 +16,8 @@ class Admin::ReservationsController < ApplicationController
   end
   
   def update
-     reservation = Reservation.find(params[:id])
-     if reservation.update(reservations_params)
+     @reservation = Reservation.find(params[:id])
+     if @reservation.update(reservations_params)
        redirect_to day_admin_reservations_path
      else
        redirect_to admin_reservation_path(reservation.id)

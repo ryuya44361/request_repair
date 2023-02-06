@@ -3,6 +3,14 @@
     <div class='row'>
       <h2>対応時間設定</h2>
     </div>
+    <% if @default_limit.errors.any? %>
+      <%= @default_limit.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @default_limit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
 
       <%= form_with model: @default_limit,url: admin_default_limits_path do |f| %>

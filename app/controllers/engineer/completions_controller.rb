@@ -19,7 +19,7 @@ class Engineer::CompletionsController < ApplicationController
       @reservation.update(complete_status: true)
       redirect_to engineer_engineers_path
     else
-      redirect_to engineer_engineers_path
+      redirect_to engineer_completion_path
     end
 
   end

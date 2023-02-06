@@ -5,6 +5,15 @@
         <%= @engineer.last_name+@engineer.first_name%>さんの会員情報編集
       </h5>
     </div>
+    
+    <% if @engineer.errors.any? %>
+      <%= @engineer.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @engineer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <div class = "row ml-3">
       <% if @engineer.errors.any? %>

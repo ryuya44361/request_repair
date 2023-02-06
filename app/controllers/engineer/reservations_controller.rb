@@ -20,12 +20,12 @@ class Engineer::ReservationsController < ApplicationController
   end
 
   def update
-    reservation = Reservation.find(params[:id])
-    if reservation.engineer_id.blank?
-      reservation.update(engineer_id: current_engineer.id)
+    @reservation = Reservation.find(params[:id])
+    if @reservation.engineer_id.blank?
+      @reservation.update(engineer_id: current_engineer.id)
       redirect_to engineer_engineers_path
     else
-      redirect_to engineer_reservation_path(reservation.id)
+      render engineer_reservation_path(reservation.id)
     end
   end
 

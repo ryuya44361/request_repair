@@ -23,8 +23,6 @@ class Reservation < ApplicationRecord
   validates :model_number, presence: true
   validates :serial_number, presence: true
   validates :introduction, presence: true
-  validates :reservation_status, presence: true
-  validates :complete_status, presence: true
   validates :repair_images, presence: true
 
 

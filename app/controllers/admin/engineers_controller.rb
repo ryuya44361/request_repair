@@ -23,9 +23,6 @@ class Admin::EngineersController < ApplicationController
     
   end
   
-  def destroy
-  end
-  
   private
   
   def engineer_params
