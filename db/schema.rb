@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 2023_01_20_145723) do
     t.date "reservation_day", null: false
     t.integer "headcount", default: 0, null: false
     t.integer "update_status", default: 0, null: false
+    t.boolean "limited", default: false, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

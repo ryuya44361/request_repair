@@ -23,7 +23,30 @@ class Reservation < ApplicationRecord
   validates :model_number, presence: true
   validates :serial_number, presence: true
   validates :introduction, presence: true
-  validates :repair_images, presence: true
+  
+  validate :reservation_count
+ 
+  private
+ 
+  def reservation_count
+      
+      default_limit = DefaultLimit.find_by(start_time: start_time,finish_time: finish_time)
+      restriction = Restriction.find_by(reservation_day: reservation_day, default_limit_id: default_limit.id)
+      max_count = 
+        if restriction.blank? ||  restriction.update_status == 0
+          default_limit.headcount
+        else 
+          restriction.headcount
+        end
+        
+      current_reservation_count = Reservation.where(reservation_day: reservation_day,start_time: start_time,finish_time: finish_time,
+                                                    complete_status: false,reservation_status: true
+                                                    ).count
+      
+      if current_reservation_count >= max_count 
+            errors.add(:reservation_day, "予約上限に達しています。")
+      end
+  end
 
 
 

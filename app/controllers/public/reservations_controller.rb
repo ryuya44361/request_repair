@@ -4,6 +4,7 @@ class Public::ReservationsController < ApplicationController
   def day
     @default_limits = DefaultLimit.all
     @restrictions = Restriction.all
+    @reservation = Reservation.new
   end
 
   def time
@@ -44,8 +45,34 @@ class Public::ReservationsController < ApplicationController
     @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: false)
     if @reservation.reservation_status == false
       @reservation.update(reservation_status: true)
+      
+      default_limit = DefaultLimit.find_by(start_time: @reservation.start_time,finish_time: @reservation.finish_time)
+      restriction = Restriction.find_by(reservation_day: @reservation.reservation_day, default_limit_id: default_limit.id)
+      max_count = 
+        if restriction.blank? ||  restriction.update_status == 0
+          default_limit.headcount
+        else 
+          restriction.headcount
+        end
+        
+      current_reservation_count = Reservation.where(reservation_day: @reservation.reservation_day,start_time: @reservation.start_time,
+                                                    finish_time: @reservation.finish_time,complete_status: false,reservation_status: true
+                                                    ).count
+      
+      if current_reservation_count == max_count
+        if restriction.blank?
+          DefaultLimit.all.each do |dl|
+            if dl.id == default_limit.id
+              Restriction.create(reservation_day: @reservation.reservation_day, default_limit_id: dl.id, limited: true)
+            else
+              Restriction.create(reservation_day: @reservation.reservation_day, default_limit_id: dl.id)
+            end
+          end
+        else
+          restriction.update(limited: true)
+        end
+      end
     end
-
   end
 
   def create

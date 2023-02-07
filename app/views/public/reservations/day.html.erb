@@ -6,11 +6,27 @@
        </div>
      </div>
      
+      <% if @reservation.errors.any? %>
+      <%= @reservation.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <div class = "row ml-3">
+      <% if @reservation.errors.any? %>
+        <h6 class = "col-auto text-danger">全ての値を入力ください。</h6>
+      <% end %>
+    </div>
+     
         <%= month_calendar do |date| %>
           <%= date.day %><br />
 
           <%
             @restrictions_day = @restrictions.where(reservation_day: date)
+            @tomorrow = Date.today + 1
             # 以下、予約上限の計算変数
             @restrictions_sum = @restrictions_day.where.not(update_status: 0).sum(:headcount)
             @default_restrictions_count = @restrictions_day.where(update_status: 0).count
@@ -20,9 +36,9 @@
             # 以上、予約上限の計算変数
           %>
 
-          <% if @restrictions_sum + @default_restrictions_sum > 0 %>
+          <% if @tomorrow <= date && @restrictions_day.blank? && @default_limits_sum > 0 %>
             <%= link_to "〇", time_reservations_path(date) %>
-          <% elsif @restrictions_day.blank? && @default_limits_sum > 0 %>
+          <% elsif @tomorrow <= date && @restrictions_sum + @default_restrictions_sum > 0 && @restrictions_day.exists?(limited: false)  %>
             <%= link_to "〇", time_reservations_path(date) %>
           <% else %>
             <p> - </p>

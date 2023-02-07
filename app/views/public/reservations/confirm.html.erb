@@ -47,7 +47,7 @@
           <%= @reservation.serial_number %>
         </div>
       </div>
-      
+
       <label>依頼内容</label>
         <div class="card">
           <div class="card-body">
@@ -75,7 +75,7 @@
               <div class="modal-body">
                 <% if @reservation.repair_images.attached? %>
                   <% @reservation.repair_images.each do |repair_image| %>
-                    <%= image_tag repair_image.variant(resize_to_limit: [450, 450]) ,class: "my-1" %><br />
+                    <%= image_tag repair_image.get_repair_images(450, 450) ,class: "my-1" %><br />
                   <% end %>
                 <% end %>
               </div>

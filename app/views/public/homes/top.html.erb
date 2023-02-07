@@ -4,8 +4,9 @@
       <div class = "col-11">
 <%= month_calendar do |date| %>
   <%= date.day %>
-    <%  
+    <%
             @restrictions_day = @restrictions.where(reservation_day: date)
+            @tomorrow = Date.today + 1
             # 以下、予約上限の計算変数
             @restrictions_sum = @restrictions_day.where.not(update_status: 0).sum(:headcount)
             @default_restrictions_count = @restrictions_day.where(update_status: 0).count
@@ -14,16 +15,16 @@
             @default_limits_sum = @default_limits_count * @default_limits.last.headcount
             # 以上、予約上限の計算変数
          %>
-         
-         <% if date.tomorrow && @restrictions_sum + @default_restrictions_sum > 0 %>
-         <p> 〇 </p>
-         <% elsif date.tomorrow && @restrictions_day.blank? && @default_limits_sum > 0 %>
-         <p> 〇 </p>
+
+         <% if @tomorrow <= date && @restrictions_day.blank? && @default_limits_sum > 0 %>
+           <p> 〇 </p>
+         <% elsif @tomorrow <= date && @restrictions_sum + @default_restrictions_sum > 0 && @restrictions_day.exists?(limited: false) %>
+           <p> 〇 </p>
          <% else %>
-         <p> - </p>
+           <p> - </p>
          <% end %>
 <% end %>
 </div>
-    </div>  
+    </div>
   </div>
 </main>
