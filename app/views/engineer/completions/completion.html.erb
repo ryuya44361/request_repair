@@ -63,6 +63,8 @@
 
       <div class = "row my-3">
         <label class = "my-1">現象写真：</label>
+        
+        <% if @reservation.repair_images.attached? %>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
           確認ボタン
@@ -79,10 +81,8 @@
                 </button>
               </div>
               <div class="modal-body">
-                <% if @reservation.repair_images.attached? %>
-                  <% @reservation.repair_images.each do |repair_image| %>
-                    <%= image_tag repair_image.variant(resize_to_limit: [450, 450]),class: "my-1" %>
-                  <% end %>
+                <% @reservation.repair_images.each do |repair_image| %>
+                  <%= image_tag repair_image.variant(resize_to_limit: [450, 450]),class: "my-1" %>
                 <% end %>
               </div>
               <div class="modal-footer">
@@ -91,6 +91,9 @@
             </div>
           </div>
         </div>
+        <% else %>
+          <p class = "my-1">画像なし</p>
+        <% end %>
       </div>
       
       <h4 class = "my-3">対応内容</h4>

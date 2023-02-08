@@ -76,9 +76,10 @@ class Public::ReservationsController < ApplicationController
   end
 
   def create
-    # byebug
+    
     @reservation = Reservation.new(reservations_params)
-    if @reservation.save
+    # byebug
+    if @reservation.save!
       redirect_to confirm_reservations_path
     else
       @default_limits = DefaultLimit.all
@@ -97,6 +98,13 @@ class Public::ReservationsController < ApplicationController
 
   def destroy
     reservation = Reservation.find(params[:id])
+    default_limit = DefaultLimit.find_by(start_time: reservation.start_time,finish_time: reservation.finish_time)
+    restriction = Restriction.find_by(reservation_day: reservation.reservation_day, default_limit_id: default_limit.id)
+    
+    if restriction.limited == true
+      restriction.update(limited: false)
+    end
+    
     reservation.destroy
     redirect_to customers_path
   end

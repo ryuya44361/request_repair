@@ -4,7 +4,7 @@
         <div class = "col-4">
           <h2>予約詳細</h2>
         </div>
-        
+
         <% if  @reservation.errors.any? %>
           <%=  @reservation.errors.count %>件のエラーが発生しました
           <ul>
@@ -19,15 +19,15 @@
             <h6 class = "col-auto text-danger">全ての値を入力ください。</h6>
           <% end %>
         </div>
-    
+
         <div class = "col-6 my-2 text-right">
           <label>予約日：</label>
-        <%= @reservation.reservation_day.strftime('%Y/%m/%d') %>　
-        <%= @reservation.start_time.strftime('%H:%M') %> ~ 
+        <%= @reservation.reservation_day.strftime('%Y/%m/%d') %>
+        <%= @reservation.start_time.strftime('%H:%M') %> ~
         <%= @reservation.finish_time.strftime('%H:%M') %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">ユーザー情報</h4>
       <div class = "row mb-3">
         <label>氏名：</label>
@@ -50,7 +50,7 @@
           <%= @reservation.customer.email %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">対応内容</h4>
 
       <div class = "row mb-3">
@@ -69,16 +69,18 @@
           <%= @reservation.serial_number %>
         </div>
       </div>
-      
+
       <label>依頼内容</label>
         <div class="card">
           <div class="card-body">
             <%= @reservation.introduction %>
           </div>
         </div>
-        
+
       <div class = "row m-3">
         <label class = "my-1">現象写真：</label>
+
+        <% if @reservation.repair_images.attached? %>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
           確認ボタン
@@ -95,11 +97,9 @@
                 </button>
               </div>
               <div class="modal-body">
-                <% if @reservation.repair_images.attached? %>
                   <% @reservation.repair_images.each do |repair_image| %>
                     <%= image_tag repair_image.variant(resize_to_limit: [450, 450]),class: "my-1" %>
                   <% end %>
-                <% end %>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
@@ -107,12 +107,14 @@
             </div>
           </div>
         </div>
-          
+        <% else %>
+          <p class = "my-1">画像なし</p>
+        <% end %>
       </div>
 
       <div class = "row">
         <div class = "col text-right">
-          
+
           <% if @reservation.engineer_id.blank? %>
           <label>対応者：</label>
             ?? ??
@@ -122,7 +124,7 @@
               <%= f.select :engineer_id, @engineers.map{ |engineer| [engineer.last_name+engineer.first_name, engineer.id]}, {selected: @reservation.engineer.last_name+@reservation.engineer.first_name}  %>
             　<%= f.submit '変更', class:"btn btn-success" %>
             <% end %>
-          <% end %>  
+          <% end %>
         </div>
       </div>
     </div>
