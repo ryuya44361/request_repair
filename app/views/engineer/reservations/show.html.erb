@@ -6,12 +6,12 @@
         </div>
         <div class = "col-6 my-2 text-right">
           <label>予約日：</label>
-        <%= @reservation.reservation_day.strftime('%Y/%m/%d') %>　
-        <%= @reservation.start_time.strftime('%H:%M') %> ~ 
+        <%= @reservation.reservation_day.strftime('%Y/%m/%d') %>
+        <%= @reservation.start_time.strftime('%H:%M') %> ~
         <%= @reservation.finish_time.strftime('%H:%M') %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">ユーザー情報</h4>
       <div class = "row mb-3">
         <label>氏名：</label>
@@ -34,7 +34,7 @@
           <%= @reservation.customer.email %>
         </div>
       </div>
-      
+
       <h4 class = "my-3">対応内容</h4>
 
       <div class = "row mb-3">
@@ -53,7 +53,7 @@
           <%= @reservation.serial_number %>
         </div>
       </div>
-      
+
       <label>依頼内容</label>
         <div class="card">
           <div class="card-body">
@@ -63,7 +63,7 @@
 
       <div class = "row my-3">
         <label class = "my-1">現象写真：</label>
-        
+
         <% if @reservation.repair_images.attached? %>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -103,13 +103,13 @@
             ?? ??
           <% else %>
             <%= @reservation.engineer.last_name %><%= @reservation.engineer.first_name %>
-          <% end %>  
+          <% end %>
         </div>
       </div>
-      
+
       <div class="row mt-4">
         <div class="col-12 col-md-4 mx-auto">
-          <%= link_to "対応する" ,confirm_engineer_reservations_path(id: @reservation.id), class: "btn btn-primary btn-block" %>
+          <%= link_to "対応する" ,confirm_engineer_reservations_path(id:  @reservation.id), class: "btn btn-primary btn-block" %>
         </div>
       </div>
 

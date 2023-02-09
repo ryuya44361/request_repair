@@ -1,6 +1,6 @@
 <main>
   <div class='container'>
-    <div class='row'>
+    <div class='row my-3 ml-3'>
       <h2>ログイン</h2>
     </div>
 
@@ -23,16 +23,23 @@
     </div>
 </div>
 
-<div class = "row justify-content-center">
-  <div class="actions">
-    <div class = "col-auto mt-5">
-    <%= f.submit "ログイン" ,class: "btn btn-primary"%>
-    </div>
+<div class = "row">
+    <div class = "col-2 mt-5 mx-auto">
+    <%= f.submit "ログイン" ,class: "btn btn-primary btn-block"%>
   </div>
 </div>
 <% end %>
 
-<%= render "engineer/shared/links" %>
+    <div class = "row my-3 ml-5">
+      <h5>新規登録の方</h5>
+    </div>
 
+    <div class = "row ml-5">
+      <div class = "col">
+        <p>
+          <%= render "engineer/shared/links" %>　から登録してください。
+        </p>
+      </div>
+    </div>
   </div>
 </main>

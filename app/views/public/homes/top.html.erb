@@ -1,12 +1,16 @@
 <main>
   <div class = "container">
+    <div class = "row my-2">
+      <h2>予約可能日</h2>
+    </div>
+    
     <div class = "row justify-content-center">
       <div class = "col-11">
 <%= month_calendar do |date| %>
   <%= date.day %>
     <%
             @restrictions_day = @restrictions.where(reservation_day: date)
-            @tomorrow = Date.today + 1
+            @day_restriction = Date.today + 2
             # 以下、予約上限の計算変数
             @restrictions_sum = @restrictions_day.where.not(update_status: 0).sum(:headcount)
             @default_restrictions_count = @restrictions_day.where(update_status: 0).count
@@ -16,9 +20,9 @@
             # 以上、予約上限の計算変数
          %>
 
-         <% if @tomorrow <= date && @restrictions_day.blank? && @default_limits_sum > 0 %>
+         <% if @day_restriction < date && @restrictions_day.blank? && @default_limits_sum > 0 %>
            <p> 〇 </p>
-         <% elsif @tomorrow <= date && @restrictions_sum + @default_restrictions_sum > 0 && @restrictions_day.exists?(limited: false) %>
+         <% elsif @day_restriction < date && @restrictions_sum + @default_restrictions_sum > 0 && @restrictions_day.exists?(limited: false) %>
            <p> 〇 </p>
          <% else %>
            <p> - </p>

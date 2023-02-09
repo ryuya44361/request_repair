@@ -5,7 +5,4 @@ class Public::HomesController < ApplicationController
     @restrictions = Restriction.all
   end
   
-  def about
-  end
-  
 end

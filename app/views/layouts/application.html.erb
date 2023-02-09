@@ -12,144 +12,140 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-dark bg-dark">
+      <nav class="navbar navbar-dark bgc">
         <div class="container">
           <% if admin_signed_in? %>
-            <p class="navbar-brand my-0">リクリペ</p>
+            <%= image_tag 'logo.png', :size =>'100x80' %>
           <% elsif engineer_signed_in? %>
-            <p class="navbar-brand my-0">リクリペ</p>
+            <%= image_tag 'logo.png', :size =>'100x80' %>
           <% else %>
-            <a class="navbar-brand" href="/">リクリペ</a>
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', :size =>'100x80' %>
+            <% end %>
           <%end%>
 
 
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span ><%= image_tag 'menu.png', :size =>'50x50'%></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto align-items-end">
+          <div class="collapse navbar-collapse align-items-end" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto" style="width: 120px;">
 
         <% if admin_signed_in? %>
 
-          <li class="nav-item">
-            <%= link_to admin_default_limits_path, class: 'nav-link text-light' do %>
-              予約設定
+          <li class="nav-item my-2">
+            <%= link_to admin_default_limits_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>予約時間設定
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to day_admin_restrictions_path, class: 'nav-link text-light' do %>
-              予約制限
+          <li class="nav-item my-2">
+            <%= link_to day_admin_restrictions_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>予約制限
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to day_admin_reservations_path, class: 'nav-link text-light' do %>
-              予約一覧
+          <li class="nav-item my-2">
+            <%= link_to day_admin_reservations_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>予約一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to admin_completions_path, class: 'nav-link text-light' do %>
-              対応完了一覧
+          <li class="nav-item my-2">
+            <%= link_to admin_completions_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>対応完了一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to admin_customers_path, class: 'nav-link text-light' do %>
-              ユーザー一覧
+          <li class="nav-item my-2">
+            <%= link_to admin_customers_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>ユーザー一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to admin_genres_path, class: 'nav-link text-light' do %>
-              ジャンル一覧
+          <li class="nav-item my-2">
+            <%= link_to admin_genres_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>ジャンル一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
-              ログアウト
+          <li class="nav-item my-2">
+            <%= link_to destroy_admin_session_path, method: :delete, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>ログアウト
             <%end%>
           </li>
 
         <% elsif engineer_signed_in? %>
 
-          <li class="nav-item">
-            <%= link_to engineer_engineers_path, class: 'nav-link text-light' do %>
-              マイページ
+          <li class="nav-item my-2">
+            <%= link_to engineer_engineers_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>マイページ
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to day_engineer_reservations_path, class: 'nav-link text-light' do %>
-              予約一覧
+          <li class="nav-item my-2">
+            <%= link_to day_engineer_reservations_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>予約一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to engineer_completions_path, class: 'nav-link text-light' do %>
-              対応完了一覧
+          <li class="nav-item my-2">
+            <%= link_to engineer_completions_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>対応完了一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to engineer_correspondences_path, class: 'nav-link text-light' do %>
-              対応予定一覧
+          <li class="nav-item my-2">
+            <%= link_to engineer_correspondences_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>対応予定一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to destroy_engineer_session_path, method: :delete, class: 'nav-link text-light' do %>
-              ログアウト
+          <li class="nav-item my-2">
+            <%= link_to destroy_engineer_session_path, method: :delete, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>ログアウト
             <%end%>
           </li>
 
         <% elsif customer_signed_in? %>
 
-          <li class="nav-item">
-            <%= link_to customers_path, class: 'nav-link text-light' do %>
-              マイページ
+          <li class="nav-item my-2">
+            <%= link_to customers_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>マイページ
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to day_reservations_path, class: 'nav-link text-light' do %>
-              予約一覧
+          <li class="nav-item my-2">
+            <%= link_to day_reservations_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>予約一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to completions_path, class: 'nav-link text-light' do %>
-              対応完了一覧
+          <li class="nav-item my-2">
+            <%= link_to completions_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>対応完了一覧
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
-              ログアウト
+          <li class="nav-item my-2">
+            <%= link_to destroy_customer_session_path, method: :delete, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>ログアウト
             <%end%>
           </li>
 
         <% else %>
 
-          <li class="nav-item">
-            <%= link_to about_path, class: 'nav-link text-light' do %>
-              アバウト
+          <li class="nav-item my-2">
+            <%= link_to new_customer_registration_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>新規登録
             <%end%>
           </li>
 
-          <li class="nav-item">
-            <%= link_to new_customer_registration_path, class: 'nav-link text-light' do %>
-              新規登録
-            <%end%>
-          </li>
-
-          <li class="nav-item">
-            <%= link_to customer_session_path, class: 'nav-link text-light' do %>
-              ログイン
+          <li class="nav-item my-2">
+            <%= link_to customer_session_path, class: ' text-black' do %>
+              <%= image_tag 'icon.png', :size =>'20x20'%>ログイン
             <%end%>
           </li>
 
@@ -165,7 +161,7 @@
     <%= yield %>
 
     <footer>
-      <nav class="navbar navbar-expand navbar-dark bg-dark mt-5">
+      <nav class="navbar navbar-expand navbar-dark bgc mt-5">
 
       </nav>
     </footer>

@@ -13,9 +13,13 @@
        </div>
      </div>
     
-        <%= month_calendar do |date| %>
-　        <%= date.day %><br />
-　        <%= link_to "予約制限", time_admin_restrictions_path(date) %>
-　     <% end %>
+          <%= month_calendar do |date| %>
+          <%= date.day %><br />
+          <% if Date.today + 2 < date %> 
+            <%= link_to "予約制限", time_admin_restrictions_path(date) %>
+          <% else %>
+            <label>-</label>
+          <% end %>
+       <% end %>
   </div>
 </main>
