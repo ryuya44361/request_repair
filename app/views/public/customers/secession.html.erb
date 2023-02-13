@@ -1,0 +1,25 @@
+<main>
+  <div class = "container">
+    <div class = "row justify-content-center">
+      <h3 class = "m-3">本当に退会しますか？</h3>
+    </div>
+
+    <div class = "row justify-content-center my-5">
+      <p class="text-center">
+        退会すると会員登録情報や<br>
+        これまでの完了履歴が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。<br>
+      </p>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-12 col-md-4 mx-auto">
+        <%= link_to "退会しない", customers_path, class: "btn btn-sm btn-success btn-block m-1" %>
+      </div>
+      <div class="col-12 col-md-4 mx-auto">
+        <%= link_to "退会する", customer_change_path, method: :patch, class: "btn btn-sm btn-danger btn-block m-1" %>
+      </div>
+    </div>
+
+  </div>
+</main>

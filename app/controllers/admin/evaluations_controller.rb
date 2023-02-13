@@ -6,7 +6,7 @@ class Admin::EvaluationsController < ApplicationController
   end
   
   def edit
-    @evaluation = Evaluation.find(params[:id])
+    @evaluation = Evaluation.find_by(completion_id: params[:id])
   end
   
   def update

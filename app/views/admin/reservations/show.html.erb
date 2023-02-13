@@ -121,7 +121,7 @@
           <% else %>
             <%= form_with model: @reservation,url: admin_reservation_path(@reservation.id),method: :patch do |f| %>
               <%= f.label "対応者：" %>
-              <%= f.select :engineer_id, @engineers.map{ |engineer| [engineer.last_name+engineer.first_name, engineer.id]}, {selected: @reservation.engineer.last_name+@reservation.engineer.first_name}  %>
+              <%= f.select :engineer_id, @engineers.map{ |engineer| [engineer.last_name+engineer.first_name, engineer.id]}, {selected: @reservation.engineer.id} %>
             　<%= f.submit '変更', class:"btn btn-success" %>
             <% end %>
           <% end %>

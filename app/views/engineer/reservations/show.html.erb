@@ -109,7 +109,9 @@
 
       <div class="row mt-4">
         <div class="col-12 col-md-4 mx-auto">
-          <%= link_to "対応する" ,confirm_engineer_reservations_path(id:  @reservation.id), class: "btn btn-primary btn-block" %>
+          <% if @reservation.engineer_id.blank? %>
+            <%= link_to "対応する" ,confirm_engineer_reservations_path(id:  @reservation.id), class: "btn btn-primary btn-block" %>
+          <% end %>
         </div>
       </div>
 

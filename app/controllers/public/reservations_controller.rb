@@ -24,7 +24,7 @@ class Public::ReservationsController < ApplicationController
       redirect_to customers_path
 
     elsif Reservation.where(customer_id: current_customer.id,complete_status: false,reservation_status: false).exists?
-      redirect_to complete_reservations_path
+      redirect_to confirm_reservations_path
 
     else
       @reservation = Reservation.new

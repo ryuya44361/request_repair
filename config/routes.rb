@@ -24,7 +24,7 @@ end
 
 namespace :engineer do
   resource :engineers, only: [:show, :edit, :update]
-
+  
   resources :reservations, only: [:index, :show, :update] do
     collection do
       get :day

@@ -17,14 +17,6 @@ class Admin::RestrictionsController < ApplicationController
       end
       @restriction = Restriction.where(reservation_day: @day_params)
     end
-    # if Restriction.find_by(reservation_day: @day_params)
-      # @restriction = Restriction.where(reservation_day: @day_params)
-    # else
-      # @restriction = @default_limits
-    # end
-
-
-
   end
 
   def update

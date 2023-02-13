@@ -20,17 +20,17 @@
 
           <tbody>
 
-            <% @completions.each do |completion| %>
+            <% @reservations.each do |reservation| %>
               <tr>
-                <td><%= completion.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-                <td><%= completion.reservation.engineer.last_name %> <%= completion.reservation.engineer.first_name %></td>
-                <td><%= completion.reservation.customer.last_name %> <%= completion.reservation.customer.first_name %></td>
-                <td><%= completion.reservation.genre.name %></td>
+                <td><%= reservation.completion.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+                <td><%= reservation.engineer.last_name %> <%= reservation.engineer.first_name %></td>
+                <td><%= reservation.customer.last_name %> <%= reservation.customer.first_name %></td>
+                <td><%= reservation.genre.name %></td>
                 <td>
-                  機種：<%= completion.reservation.model_number %><br />
-                  S/N:　<%= completion.reservation.serial_number %>
+                  機種：<%= reservation.model_number %><br />
+                  S/N:　<%= reservation.serial_number %>
                 </td>
-                <td><%= link_to "詳細",completion_path(completion.id) ,class: "btn btn-success"%></td>
+                <td><%= link_to "詳細",completion_path(reservation.completion.id) ,class: "btn btn-success"%></td>
               </tr>
             <%end%>
           </tbody>
@@ -39,7 +39,7 @@
         </div>
 
     <div class = "row justify-content-center">
-      <%= paginate @completions %>
+      <%= paginate @reservations %>
     </div>
   </div>
 </main>
