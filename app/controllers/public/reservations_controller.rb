@@ -79,7 +79,7 @@ class Public::ReservationsController < ApplicationController
     
     @reservation = Reservation.new(reservations_params)
     # byebug
-    if @reservation.save!
+    if @reservation.save
       redirect_to confirm_reservations_path
     else
       @default_limits = DefaultLimit.all

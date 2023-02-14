@@ -24,7 +24,7 @@ end
 
 namespace :engineer do
   resource :engineers, only: [:show, :edit, :update]
-  
+
   resources :reservations, only: [:index, :show, :update] do
     collection do
       get :day
@@ -34,7 +34,7 @@ namespace :engineer do
 
   resources :correspondences, only: [:index, :show]
 
-  resources :completions, only: [:index, :show, :create] do
+  resources :completions, only: [:new, :index, :show, :create] do
     collection do
       get :completion
       post :confirm
@@ -49,7 +49,7 @@ end
     registrations: "engineer/registrations",
     sessions: 'engineer/sessions'
   }
-  
+
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'

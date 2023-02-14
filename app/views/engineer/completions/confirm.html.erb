@@ -36,7 +36,7 @@
           <%= @reservation.serial_number %>
         </div>
       </div>
-      
+
       <label>依頼内容</label>
         <div class="card">
           <div class="card-body">
@@ -46,7 +46,7 @@
 
       <div class = "row my-3">
         <label class = "my-1">現象写真：</label>
-        
+
         <% if @reservation.repair_images.attached? %>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -80,7 +80,7 @@
       </div>
 
       <h4 class = "my-3">対応内容</h4>
-      
+
       <label>対応内容</label>
         <div class="card">
           <div class="card-body">
@@ -94,9 +94,13 @@
             <%= @reservation.engineer.last_name %><%= @reservation.engineer.first_name %>
         </div>
       </div>
-
+      
       <%= form_with model: @completion,url: engineer_completions_path do |f| %>
         <div class="row mt-4">
+          <div class="col-12 col-md-4 mx-auto">
+            <%= link_to "対応入力画面へ戻る", new_engineer_completion_path(:id => @reservation.id) ,class: "btn btn-primary btn-block" %>
+          </div>
+
           <div class="col-12 col-md-4 mx-auto">
             <%= f.hidden_field :reservation_id, :value =>  @reservation.id  %>
             <%= f.hidden_field :substance, :value =>  @substance_params  %>
@@ -104,6 +108,6 @@
           </div>
         </div>
       <% end %>
-      
+
   </div>
 </main>

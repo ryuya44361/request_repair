@@ -5,7 +5,7 @@
         <h2>アカウント詳細（会員）</h2>
       </div>
     </div>
-    
+
   <div class = "container justify-content-center">
     <div class = "row mt-2">
         <p class = "col">氏名</p>
@@ -39,15 +39,19 @@
             <p class = "col-9">有効</p>
           <% end %>
     </div>
-    
+
     <div class="row mt-4">
+      <div class="col-12 col-md-4 mx-auto">
+        <%= link_to "一覧に戻る", admin_customers_path, class: "btn btn-success btn-block" %>
+      </div>
+
       <div class="col-12 col-md-4 mx-auto">
         <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success btn-block" %>
       </div>
     </div>
-      
+
     </div>
   </div>
-  
+
   </div>
 </main>

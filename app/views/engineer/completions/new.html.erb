@@ -12,6 +12,21 @@
         </div>
       </div>
       
+      <% if @completion.errors.any? %>
+      <%= @completion.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @completion.errors.full_messages.each do |message| %>
+          <li>対応内容を入力してください。</li>
+        <% end %>
+      </ul>
+    <% end %>
+    
+    <div class = "row ml-3">
+      <% if @completion.errors.any? %>
+        <h6 class = "col-auto text-danger">全ての値を入力ください。</h6>
+      <% end %>
+    </div>
+      
       <h4 class = "my-3">ユーザー情報</h4>
       <div class = "row mb-3">
         <label>氏名：</label>

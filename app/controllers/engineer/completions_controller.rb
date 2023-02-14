@@ -1,7 +1,7 @@
 class Engineer::CompletionsController < ApplicationController
   before_action :authenticate_engineer!
 
-  def completion
+  def new
     @reservation = Reservation.find(params[:id])
     @completion = Completion.new
   end
@@ -19,7 +19,8 @@ class Engineer::CompletionsController < ApplicationController
       @reservation.update(complete_status: true)
       redirect_to engineer_engineers_path
     else
-      redirect_to engineer_completion_path
+      @reservation = Reservation.find(@completion.reservation_id)
+      render :new
     end
 
   end
