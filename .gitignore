@@ -38,3 +38,6 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+#Gitの管理から外すため/.envを追記する
+/.env
