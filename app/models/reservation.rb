@@ -17,7 +17,7 @@ class Reservation < ApplicationRecord
   validates :serial_number, presence: true
   validates :introduction, presence: true
 
-  validate :reservation_count
+  validate :reservation_count, on: :create
 
   private
 

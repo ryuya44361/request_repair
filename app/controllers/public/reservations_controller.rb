@@ -78,7 +78,6 @@ class Public::ReservationsController < ApplicationController
   def create
     
     @reservation = Reservation.new(reservations_params)
-    # byebug
     if @reservation.save
       redirect_to confirm_reservations_path
     else

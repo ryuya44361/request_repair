@@ -16,6 +16,13 @@ class Engineer::CompletionsController < ApplicationController
     @completion = Completion.new(completions_params)
     if @completion.save
       @reservation = Reservation.find(params[:completion][:reservation_id])
+      @default_limit = DefaultLimit.find_by(start_time: @reservation.start_time,finish_time: @reservation.finish_time)
+      @restriction = Restriction.find_by(reservation_day: @reservation.reservation_day, default_limit_id: @default_limit.id)
+
+      if @restriction.limited == true
+        @restriction.update(limited: false)
+      end
+
       @reservation.update(complete_status: true)
       redirect_to engineer_engineers_path
     else
