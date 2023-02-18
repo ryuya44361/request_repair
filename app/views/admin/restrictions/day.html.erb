@@ -7,8 +7,12 @@
        <div class = "col-6 text-right my-1">
           <%= form_with model: @default_limits,url: update_all_admin_restrictions_path, method: :patch do |f| %>
             <label>デフォルト人数：</label>
-            <%= f.select :headcount, *[0..20], selected: @headcount %>
-            <%= f.submit '変更', class:"btn btn-success" %>
+            <% if @default_limits.present? %>
+              <%= f.select :headcount, *[0..20], selected: @default_limits_last.headcount %>
+              <%= f.submit '変更', class:"btn btn-success" %>
+            <% else %>
+              <p>予約時間設定に値が入っていません</p>
+            <% end %>
           <%end%>
        </div>
      </div>

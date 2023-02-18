@@ -3,7 +3,7 @@ class Admin::RestrictionsController < ApplicationController
 
   def day
     @default_limits = DefaultLimit.all
-    @headcount = DefaultLimit.last.headcount
+    @default_limits_last = DefaultLimit.last
 
   end
 
