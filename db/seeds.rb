@@ -9,3 +9,12 @@ Admin.create!(
   email: 'admin@admin.com',
   password: 'password'
   )
+
+
+DefaultLimit.create!(
+  [
+    {start_time: '09:00', finish_time: '12:00'},
+    {start_time: '13:00', finish_time: '15:00'},
+    {start_time: '16:00', finish_time: '18:00'}
+  ]
+)

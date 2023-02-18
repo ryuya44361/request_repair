@@ -37,8 +37,6 @@ class Public::ReservationsController < ApplicationController
 
   def confirm
     @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: false)
-    # byebug
-
   end
 
   def complete
