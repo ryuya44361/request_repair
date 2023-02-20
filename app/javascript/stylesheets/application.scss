@@ -3,7 +3,7 @@
 
 .bgc {
   background-color: powderblue;
-  
+
 }
 
 .text-black {
@@ -12,9 +12,13 @@
 
 .wday-0 {
   color: red;
-  
+
 }
 
 .wday-6 {
   color: blue;
+}
+
+.field_with_errors{
+  display: inline-block;
 }
