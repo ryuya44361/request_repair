@@ -14,15 +14,15 @@
 
     <div class = "col-4 ml-4">
       <div class="field">
-        <%= f.label "（姓）　" %>
-        <%= f.text_field :last_name,autofocus: true %>
+        <%= f.label "（姓）",style: "width:65px;" %>
+        <%= f.text_field :last_name,autofocus: true,style: "width:200px;" %>
       </div>
     </div>
 
     <div class = "col-4">
       <div class="field">
-        <%= f.label "（名）　" %>
-        <%= f.text_field :first_name %>
+        <%= f.label "（名）",style: "width:65px;" %>
+        <%= f.text_field :first_name,style: "width:200px;" %>
       </div>
     </div>
   </div>
@@ -35,15 +35,15 @@
 
     <div class = "col-4 ml-4">
       <div class="field">
-        <%= f.label "（セイ）" %>
-        <%= f.text_field :last_name_kana%>
+        <%= f.label "（セイ）",style: "width:65px;" %>
+        <%= f.text_field :last_name_kana,style: "width:200px;" %>
       </div>
     </div>
 
     <div class = "col-4">
       <div class="field">
-        <%= f.label "（メイ）" %>
-        <%= f.text_field :first_name_kana %>
+        <%= f.label "（メイ）",style: "width:65px;"  %>
+        <%= f.text_field :first_name_kana,style: "width:200px;" %>
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@
 
     <div class = "col-6">
       <div class="field">
-        <%= f.email_field :email,placeholder: "sample@example.com" %>
+        <%= f.email_field :email,placeholder: "sample@example.com",style: "width:200px;" %>
       </div>
     </div>
   </div>
@@ -67,7 +67,7 @@
 
     <div class = "col-6">
       <div class="field">
-        <%= f.text_field :telephone_number ,placeholder: "0000000000"%>
+        <%= f.text_field :telephone_number ,placeholder: "0000000000",style: "width:200px;" %>
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 
     <div class = "col-6">
       <div class="field">
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <%= f.password_field :password, autocomplete: "new-password",style: "width:200px;" %>
       </div>
     </div>
   </div>
@@ -91,7 +91,7 @@
 
     <div class = "col-6">
       <div class="field">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password",style: "width:200px;" %>
       </div>
     </div>
   </div>
