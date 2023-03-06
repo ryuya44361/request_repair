@@ -5,7 +5,7 @@
         <h2>対応予定画面</h2>
       </div>
     </div>
-    
+
     <!--2/24 絞り込み処理（未）-->
     <div class = "row">
       <p>
@@ -15,7 +15,7 @@
       </p>
     </div>
     <!--2/24　ここまで-->
-    
+
     <div class ="row px-5 mt-5">
       <table class="table table-bordered border-primary">
         <thead>
@@ -27,7 +27,7 @@
             <th></th>
           </tr>
         </thead>
-        
+
         <tbody>
         <% @reservations.each do |reservation| %>
             <tr>
@@ -42,10 +42,10 @@
             </tr>
         <%end%>
         </tbody>
-        
+
       </table>
     </div>
-        
+
     <div class = "row justify-content-center">
       <%= paginate @reservations %>
     </div>
