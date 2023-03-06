@@ -16,8 +16,14 @@ class Reservation < ApplicationRecord
   validates :model_number, presence: true
   validates :serial_number, presence: true
   validates :introduction, presence: true
-
+  
   validate :reservation_count, on: :create
+  
+  # 2/24　エンジニアでの絞り込み処理にて使用
+  scope :today, -> {reservation(reservation_day: Date.today)}
+  scope :tomorrow, -> {reservation(reservation_day: Date.today+1)}
+  scope :after, -> {reservation(reservation_day: Date >= Date.today+2)}
+  # ここまで
 
   private
 
