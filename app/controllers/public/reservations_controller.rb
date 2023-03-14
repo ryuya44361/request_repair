@@ -1,5 +1,7 @@
 class Public::ReservationsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :reservation_limit , only: [:new], unless: proc { params[:reservation_day].to_date > Date.today+2 }
+
 
   def day
     @default_limits = DefaultLimit.all
@@ -43,20 +45,20 @@ class Public::ReservationsController < ApplicationController
     @reservation = Reservation.find_by(customer_id: current_customer.id,complete_status: false,reservation_status: false)
     if @reservation.reservation_status == false
       @reservation.update(reservation_status: true)
-      
+
       default_limit = DefaultLimit.find_by(start_time: @reservation.start_time,finish_time: @reservation.finish_time)
       restriction = Restriction.find_by(reservation_day: @reservation.reservation_day, default_limit_id: default_limit.id)
-      max_count = 
+      max_count =
         if restriction.blank? ||  restriction.update_status == 0
           default_limit.headcount
-        else 
+        else
           restriction.headcount
         end
-        
+
       current_reservation_count = Reservation.where(reservation_day: @reservation.reservation_day,start_time: @reservation.start_time,
                                                     finish_time: @reservation.finish_time,complete_status: false,reservation_status: true
                                                     ).count
-      
+
       if current_reservation_count == max_count
         if restriction.blank?
           DefaultLimit.all.each do |dl|
@@ -74,7 +76,7 @@ class Public::ReservationsController < ApplicationController
   end
 
   def create
-    
+
     @reservation = Reservation.new(reservations_params)
     if @reservation.save
       redirect_to confirm_reservations_path
@@ -97,11 +99,11 @@ class Public::ReservationsController < ApplicationController
     reservation = Reservation.find(params[:id])
     default_limit = DefaultLimit.find_by(start_time: reservation.start_time,finish_time: reservation.finish_time)
     restriction = Restriction.find_by(reservation_day: reservation.reservation_day, default_limit_id: default_limit.id)
-    
+
     if restriction.limited == true
       restriction.update(limited: false)
     end
-    
+
     reservation.destroy
     redirect_to customers_path
   end
@@ -111,6 +113,10 @@ class Public::ReservationsController < ApplicationController
   def reservations_params
     params.require(:reservation).permit(:customer_id,:genre_id,:complete_status,:reservation_day,
                                         :start_time,:finish_time,:model_number,:serial_number,:introduction, repair_images: [])
+  end
+
+  def reservation_limit
+    redirect_to day_reservations_path
   end
 
 end

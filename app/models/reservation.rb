@@ -19,6 +19,12 @@ class Reservation < ApplicationRecord
 
   validate :reservation_count, on: :create
 
+  # 日付での絞り込み処理にて使用
+  scope :today, -> {where(reservation_day: Date.today)}
+  scope :tomorrow, -> {where(reservation_day: Date.today+1)}
+  scope :after, -> {where("reservation_day >= ?", Date.today+2)}
+  # ここまで
+
   private
 
   def reservation_count
