@@ -4,7 +4,7 @@ class Engineer::CorrespondencesController < ApplicationController
   def index
     @reservation_my = Reservation.where(engineer_id: current_engineer.id,complete_status: false,reservation_status: true)
   
-  #2/24　絞り込み処理 
+  #　絞り込み処理 
     if params[:today]
       @reservations = @reservation_my.today.page(params[:page])
     elsif params[:tomorrow]
