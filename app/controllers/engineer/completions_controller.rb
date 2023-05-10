@@ -33,7 +33,7 @@ class Engineer::CompletionsController < ApplicationController
   end
 
   def index
-    @completions = Completion.page(params[:page])
+    @reservations = Reservation.where(complete_status: true).page(params[:page])
   end
 
   def show

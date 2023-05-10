@@ -5,7 +5,7 @@
         <h2>対応完了一覧</h2>
       </div>
     </div>
-     
+
     <div class ="row px-5 mt-5">
       <table class="table table-bordered border-primary">
         <thead>
@@ -17,28 +17,21 @@
             <th>機器情報</th>
             <th></th>
           </tr>
-        
         </thead>
-          <tbody>
-          <% @completions.each do |completion| %>
+
+        <tbody>
+          <% @reservations.each do |reservation| %>
             <tr>
-              <td><%= completion.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-              <td><%= completion.reservation.engineer.last_name %> <%= completion.reservation.engineer.first_name %></td>
-              <td><%= completion.reservation.customer.last_name %> <%= completion.reservation.customer.first_name %></td>
-              <td><%= completion.reservation.genre.name %></td>
-              <td>
-                機種：<%= completion.reservation.model_number %><br />
-                S/N:　<%= completion.reservation.serial_number %>
-              </td>
-              <td><%= link_to "詳細",engineer_completion_path(completion.id) ,class: "btn btn-success"%></td>
+              <%= render 'public/complete',reservation: reservation %>
+              <td><%= link_to "詳細",engineer_completion_path(reservation.completion.id) ,class: "btn btn-success"%></td>
             </tr>
           <%end%>
-          </tbody>
+        </tbody>
       </table>
     </div>
-        
+
     <div class = "row justify-content-center">
-      <%= paginate @completions %>
+      <%= paginate @reservations %>
     </div>
   </div>
 </main>
